@@ -29,56 +29,50 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/inicio" class="nav-link">GOKart</a>
+        <a href="/inicio" class="nav-link">Ruta66</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/inicio" class="nav-link">
-
-        </a>
+        <a href="/inicio" class="nav-link"></a>
 
       </li>
 
     </ul>
 
 
-
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
-
     <!--============= Mantiene del lado derecho el menu de acceso ================-->
-    <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
-      
-        <li class="nav-item dropdown">
-            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }} <span class="caret"></span>
-            </a>
 
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();">
-                    {{ __('logout') }}
-                </a>
+      <ul class="navbar-nav ml-auto">
+          <!-- Authentication Links -->
+          @guest
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+              </li>
+              @if (Route::has('register'))
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a>
+                  </li>
+              @endif
+          @else
+              <li class="nav-item dropdown">
+                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                      {{ Auth::user()->name }} <span class="caret"></span>
+                  </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </div>
-        </li>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right"></div>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                          {{ __('logout') }}
+                      </a>
 
-      <!-- Notifications Dropdown Menu -->
-    </ul>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
+                  </div>
+              </li>
+          @endguest
+      </ul>
+
   </nav>
   <!-- /.navbar -->
 
@@ -86,9 +80,9 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/inicio" class="brand-link">
-      <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img center src="{{asset('dist/img/LOGO2.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-10"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">.</span>
     </a>
 
     <!-- Sidebar -->
@@ -100,7 +94,7 @@
 
         </div>
         <div class="info">
-          <a href="#" class="d-block">Usuario</a>
+          <a class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -112,22 +106,14 @@
           <li class="nav-item has-treeview menu-open">
 
             <li class="nav-item">
-              <a href="/categorias" class="nav-link">
+              <a href="/" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                  Categorías
-                  <span class="right badge badge-danger">New</span>
+                  Venta
+                  
                 </p>
               </a>
             </li>
-
-          <!--PRUEBAS-->
-
-            <!--FIN DE VENTAS-->
-
-            <!--=======Login=====-->
-
-            <!--=======Final Login=====-->
             <!--Prueba de Recargas-->
             <li class="nav-item">
               <a href="/recargas" class="nav-link">
@@ -137,6 +123,7 @@
                   <span class="badge badge-info right"></span>
                 </p>
               </a>
+            </li>
             </li>
 
             <!--fin de Recargas-->
@@ -158,36 +145,43 @@
             </a>
           </li>
 
+
           <li class="nav-header">ADMINISTRACIÓN</li>
           <li class="nav-item">
-            <a href="RegistroCliente.blade.php" class="nav-link">
-              <i class="nav-icon fas fa-credit-card"></i>
+            <a href="/indexcliente" class="nav-link">
+            <i class="nav-icon fas fa-user-plus"></i>
               <p>
-                Registro Cliente
+                Cliente
+                <span class="badge badge-info right"></span>
+              </p>
+            </a>         
+          </li>
+
+          <li class="nav-item">
+            <a href="/indexproducto" class="nav-link">
+            <i class="nav-icon fas fa-border-all"></i>
+              <p>
+                Producto
                 <span class="badge badge-info right"></span>
               </p>
             </a>
+          </li>
 
-            <a href="RegistroProducto.blade.php" class="nav-link">
-              <i class="nav-icon fas fa-credit-card"></i>
+          <li class="nav-item">
+            <a href="/indexmembresia" class="nav-link">
+            <i class="nav-icon fas fa-address-card"></i>
               <p>
-                Registro Producto
+                Membresia
                 <span class="badge badge-info right"></span>
               </p>
             </a>
+          </li>
 
-            <a href="RegistroMembresia.blade.php" class="nav-link">
-              <i class="nav-icon fas fa-credit-card"></i>
+          <li class="nav-item">
+            <a href="/indextrabajador" class="nav-link">
+            <i class="nav-icon fas fa-chalkboard-teacher"></i>
               <p>
-                Registro Membresia
-                <span class="badge badge-info right"></span>
-              </p>
-            </a>
-
-            <a href="RegistroTrabajador.blade.php" class="nav-link">
-              <i class="nav-icon fas fa-credit-card"></i>
-              <p>
-                Registro Trabajador
+                Trabajador
                 <span class="badge badge-info right"></span>
               </p>
             </a>
@@ -272,5 +266,7 @@
 <script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
 <script src="{{asset('dist/js/demo.js')}}"></script>
 <script src="{{asset('dist/js/pages/dashboard3.js')}}"></script>
+
+
 </body>
 </html>

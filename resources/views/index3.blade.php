@@ -21,10 +21,12 @@
           <div class="card-body">
             <div class="tab-content">
               <div class="tab-pane active" id="atraccion">
-               <div class="row" >
+               <div class="row" id="botones">
 <div class="col-md-4">
         <!-- Widget: user widget style 1 -->
+
         <div class="card card-widget widget-user">
+          <button value="150" name="Gotcha 1">
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white"
                style="background: url('dist/img/photo1.png') center center;">
@@ -36,7 +38,7 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="description-block">
-                  <span class="text-sm">Gotcha</span>
+                  <span class="text-sm">Gotcha 1</span>
                   <h5 class="description-header description-text">$150.00</h5>
 
                 </div>
@@ -45,12 +47,43 @@
             </div>
             <!-- /.row -->
           </div>
+        </button>
+        </div>
+
+        <!-- /.widget-user -->
+</div>
+<div class="col-md-4">
+        <!-- Widget: user widget style 1 -->
+        <div class="card card-widget widget-user">
+          <button value="150" name="Gotcha 2">
+          <!-- Add the bg color to the header using any of the bg-* classes -->
+          <div class="widget-user-header text-white"
+               style="background: url('dist/img/photo1.png') center center;">
+          </div>
+        <div class="widget-user-image">
+          <img class="img-circle" src="dist/img/user3-128x128.jpg" alt="User Avatar">
+        </div>
+          <div class="card-footer p-0 m-4">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="description-block">
+                  <span class="text-sm">Gotcha 2</span>
+                  <h5 class="description-header description-text">$150.00</h5>
+
+                </div>
+                <!-- /.description-block -->
+              </div>
+            </div>
+            <!-- /.row -->
+          </div>
+        </button>
         </div>
         <!-- /.widget-user -->
 </div>
 <div class="col-md-4">
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user">
+          <button value="150" name="Gotcha 3">
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white"
                style="background: url('dist/img/photo1.png') center center;">
@@ -62,7 +95,7 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="description-block">
-                  <span class="text-sm">Gotcha</span>
+                  <span class="text-sm">Gotcha 3</span>
                   <h5 class="description-header description-text">$150.00</h5>
 
                 </div>
@@ -71,32 +104,7 @@
             </div>
             <!-- /.row -->
           </div>
-        </div>
-        <!-- /.widget-user -->
-</div>
-<div class="col-md-4">
-        <!-- Widget: user widget style 1 -->
-        <div class="card card-widget widget-user">
-          <!-- Add the bg color to the header using any of the bg-* classes -->
-          <div class="widget-user-header text-white"
-               style="background: url('dist/img/photo1.png') center center;">
-          </div>
-        <div class="widget-user-image">
-          <img class="img-circle" src="dist/img/user3-128x128.jpg" alt="User Avatar">
-        </div>
-          <div class="card-footer p-0 m-4">
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="description-block">
-                  <span class="text-sm">Gotcha</span>
-                  <h5 class="description-header description-text">$150.00</h5>
-
-                </div>
-                <!-- /.description-block -->
-              </div>
-            </div>
-            <!-- /.row -->
-          </div>
+        </button>
         </div>
         <!-- /.widget-user -->
 </div>
@@ -513,40 +521,18 @@
                   </div>
                   <!-- /.card-header -->
                   <div class="card-body p-0">
-                    <table class="table table-striped">
+                    <table id="tablaventa" class="table table-striped">
                       <thead>
                         <tr>
                           <th style="width: 10px">#</th>
                           <th>Servicio</th>
-                          <th></th>
                           <th style="width: 40px">Precio</th>
+                          <th>..</th>
+
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>1.</td>
-                          <td>MarioKart</td>
-                          <td>
-                            <div class="progress progress-xs"></div>
-                          </td>
-                          <td>$55</span></td>
-                        </tr>
-                        <tr>
-                          <td>2.</td>
-                          <td>Tubugan</td>
-                          <td>
-                            <div class="progress progress-xs"></div>
-                          </td>
-                          <td>$75</span></td>
-                        </tr>
-                        <tr>
-                          <td>3.</td>
-                          <td>Gotcha</td>
-                          <td>
-                            <div class="progress progress-xs"></div>
-                          </td>
-                          <td>$155</span></td>
-                        </tr>
+
                       </tbody>
                     </table>
                   </div>
@@ -555,6 +541,31 @@
             </div>
             <!-- /.card-body -->
           </div>
+          <script src="https://code.jquery.com/jquery-2.0.3.js"></script>
+          <script type="text/javascript">
+
+$(document).ready(function(){
+    /**
+     * Funcion para añadir una nueva columna en la tabla
+     */
+     $("#botones button").click(function(){
+       var nuevaFila="<tr>";
+           nuevaFila+="<td>"+"#"+$("#tablaventa  tr:first td").length;+"</td>";
+           nuevaFila+="<td>"+$(this).attr('name')+"</td>";
+           nuevaFila+="<td>$"+$(this).val()+"</td>";
+           nuevaFila+="<td><a id=\"eliminar\"href=\"\"  data-toggle=\"modal\"><i class=\"fas fa-trash\"></i></a></td>"
+
+       nuevaFila+="</tr>";
+       $("#tablaventa").append(nuevaFila);
+
+   })
+
+   $("#tablaventa").on('click', '#eliminar', function () {
+     $(this).closest('tr').remove();
+ });
+});
+
+</script>
           <!-- Button -->
           <!--Ojo.--El boton se encuentra dentro de la tabla-->
           <input type="submit" value="Generar costo" class="btn btn-success float-right">

@@ -13,14 +13,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/','InicioController@index');
 Route::get('inicio','InicioController@index');
+Route::get('editarcliente/{id}','AdministracionController@editcliente');
+Route::get('actualizarcliente/{id}','AdministracionController@actualizarcliente');
+Route::get('eliminarcliente/{id}','AdministracionController@eliminarcliente');
+Route::get('eliminartarjeta/{id}','AdministracionController@eliminartarjeta');
+
 Route::get('categorias','InicioController@categorias');
 Route::get('cortecaja','InicioController@cortecaja');
+Route::get('recargas','InicioController@recargas');
 Route::get('base','InicioController@base');
+Route::get('indexcliente','AdministracionController@indexcliente');
+Route::get('indexproducto','AdministracionController@indexproducto');
+Route::get('indexmembresia','AdministracionController@indexmembresia');
+
+Route::post('crearcliente','AdministracionController@crearcliente');
+Route::get('registrocliente','AdministracionController@registrocliente');
+Route::get('registroproducto','AdministracionController@registroproducto');
+Route::get('registrotrabajador','AdministracionController@registrotrabajador');
+Route::get('registromembresia','AdministracionController@registromembresia');
 
 
 

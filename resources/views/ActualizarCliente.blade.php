@@ -11,36 +11,41 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" method="POST" action="/crearcliente">
-          @csrf
+        <form role="form" method="PUT" action="/actualizarcliente/{{$cliente->idcliente}}">
+
           <div class="card-body">
             <div class="form-group">
               <label for="nombre_cliente">Nombre del cliente</label>
-              <input type="text" class="form-control" id="nombre_cliente" name="nombre_cliente" placeholder="Ingresa el nombre completo">
+              <input type="text" class="form-control" id="nombre_cliente" name="nombre_cliente" value="{{$cliente->nombre}}" placeholder="Ingresa el nombre">
             </div>
             <div class="form-group">
               <label for="domicilio">Domicilio</label>
-              <input type="text" class="form-control" id="domicilio" name="domicilio" placeholder="Ingresa el domicilio">
+              <input type="text" class="form-control" id="domicilio_cliente" name="domicilio_cliente" value="{{$cliente->direccion}}" placeholder="Ingresa el domicilio">
             </div>
 
              <div class="form-group">
               <label for="telefono_cliente">Telefono</label>
-              <input required type="text" class="form-control" id="telefono_cliente" name="telefono_cliente" placeholder="ingresa el número Telefonico">
+              <input type="text" class="form-control" id="telefono_cliente" name="telefono_cliente" value="{{$cliente->telefono}}" placeholder="Ingresa el numero telefonico">
             </div>
+
 
             <div class="form-group">
              <!--sexo-->
-               <label for="sexo_cliente">Sexo</label>
-               <select required class="custom-select" id="sexo_cliente" name="sexo_cliente">
-                <option value="">Escoja opcion</option>
-                <option value="H">H</option>
-                <option value="M">M</option>
+               <label for="">Sexo</label>
+               <select class="custom-select" name="sexo_cliente">
+                 @if($cliente->sexo=='H')
+                     <option value="H"selected>H</option>
+                     <option value="M">M</option>
+                 @else
+                 <option value="H">H</option>
+                 <option value="M"selected>M</option>
+                 @endif
               </select>
             </div>
 
             <!-- Date range -->
           <div class="form-group">
-            <label for="fecha_nacimiento">Fecha de nacimiento</label>
+            <label>Fecha de nacimiento</label>
 
             <div class="input-group">
               <div class="input-group-prepend">
@@ -48,7 +53,7 @@
                   <i class="far fa-calendar-alt"></i>
                 </span>
               </div>
-              <input type="date" required class="form-control float-right" id="fecha_nacimiento" name="fecha_nacimiento">
+              <input type="date" value="{{$cliente->fecha_nac}}" class="form-control float-right" id="fecha_nacimiento" name="fecha_nacimiento">
             </div>
             <!-- /.input group -->
           </div>
@@ -56,7 +61,7 @@
 
             <!-- Date range -->
           <div hidden class="form-group">
-            <label for="fecha_registro">Fecha de registro</label>
+            <label>Fecha de registro</label>
 
             <div class="input-group">
               <div class="input-group-prepend">
@@ -64,8 +69,7 @@
                   <i class="far fa-calendar-alt"></i>
                 </span>
               </div>
-              <input hidden type="date" class="form-control float-right" id="fecha_registro" name="fecha_registro"
-              value="<?php echo date("Y-m-d");?>">
+              <input type="date" value="{{$cliente->fecha_reg}}" class="form-control float-right" id="fecha_registro" name="fecha_registro">
             </div>
             <!-- /.input group -->
           </div>
@@ -75,7 +79,7 @@
           <!-- /.card-body -->
 
           <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="submit" class="btn btn-primary">ActualizarCliente</button>
           </div>
 
 

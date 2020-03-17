@@ -15,6 +15,10 @@
         <form role="form">
           <div class="card-body">
             <div class="form-group">
+              <label for="nombreproducto">idproducto</label>
+              <input type="number" class="form-control" id="nombre_producto" placeholder="ingresa el nombre del producto">
+            </div>
+            <div class="form-group">
               <label for="nombreproducto">Nombre del producto</label>
               <input type="text" class="form-control" id="nombre_producto" placeholder="ingresa el nombre del producto">
             </div>
@@ -24,23 +28,20 @@
             </div>
             <div class="form-group">
               <label for="precioproducto">Precio</label>
+              <input type="text" class="form-control" id="precio_producto" placeholder="precio del producto" step="0" min="0">
+            </div>
+            <div class="form-group">
+              <label for="categoriaproducto">categoria</label>
               <input type="number" class="form-control" id="precio_producto" placeholder="precio del producto" step="0" min="0">
             </div>
             <div class="form-group">
               <label for="exampleInputFile">Subir archivo</label>
               <div class="input-group">
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="exampleInputFile">
+                  <input accept="image/*" type="file" name="imagen" class="custom-file-input" id="imagen">
                   <label class="custom-file-label" for="exampleInputFile">Buscar archivo</label>
                 </div>
-                <div class="input-group-append">
-                  <span class="input-group-text" id="">Subir</span>
-                </div>
               </div>
-            </div>
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
           </div>
           <!-- /.card-body -->

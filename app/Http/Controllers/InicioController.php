@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InicioController extends Controller
 {
     public function index(Request $request)
     {
-
+       if(Auth::check())
        return view("index3");
+       else
+       {
+         return redirect('/login');
+       }
     }
     public function categorias(Request $request)
     {
@@ -20,6 +25,11 @@ class InicioController extends Controller
     {
 
        return view("cortecaja");
+    }
+    public function recargas(Request $request)
+    {
+
+       return view("recargas");
     }
     public function base(Request $request)
     {
