@@ -110,7 +110,7 @@
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Venta
-                  
+
                 </p>
               </a>
             </li>
@@ -154,7 +154,7 @@
                 Cliente
                 <span class="badge badge-info right"></span>
               </p>
-            </a>         
+            </a>
           </li>
 
           <li class="nav-item">
@@ -178,7 +178,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="/indextrabajador" class="nav-link">
+            <a href="/registrotrabajador" class="nav-link">
             <i class="nav-icon fas fa-chalkboard-teacher"></i>
               <p>
                 Trabajador

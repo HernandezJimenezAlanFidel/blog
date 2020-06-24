@@ -30,7 +30,6 @@
             <td>{{ $tor->fondotarjeta}}</td>
             <td>
               <a href="/editarcliente/{{$tor->idtarjeta}}"><i class="fa fa-edit"></i></a>
-              
               <a href=""data-target="#modal-delete-{{$tor->idtarjeta}}" data-toggle="modal"><i class="fas fa-trash"></i></a>
             </td>
           </tr>

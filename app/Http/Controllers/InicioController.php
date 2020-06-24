@@ -9,12 +9,14 @@ class InicioController extends Controller
 {
     public function index(Request $request)
     {
-       if(Auth::check())
+       /*if(Auth::check())
        return view("index3");
        else
        {
          return redirect('/login');
-       }
+       }*/
+       $request->user()->authorizeRoles('admin');
+       return view("index3");
     }
     public function categorias(Request $request)
     {

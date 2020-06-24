@@ -27,6 +27,7 @@ Route::get('base','InicioController@base');
 Route::get('indexcliente','AdministracionController@indexcliente');
 Route::get('indexproducto','AdministracionController@indexproducto');
 Route::get('indexmembresia','AdministracionController@indexmembresia');
+Route::get('indextrabajador','AdministracionController@indextrabajador');
 
 Route::post('crearcliente','AdministracionController@crearcliente');
 Route::get('registrocliente','AdministracionController@registrocliente');
