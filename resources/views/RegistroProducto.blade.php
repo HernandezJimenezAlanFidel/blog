@@ -12,7 +12,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" method="POST" action="/crearproducto">
+        <form role="form" method="POST" action="/crearproducto" enctype="multipart/form-data">
           @csrf
           <div class="card-body">
             <div class="form-group">

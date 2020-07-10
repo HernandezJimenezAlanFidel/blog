@@ -22,7 +22,7 @@ class InicioController extends Controller
 
        if($request->user()!=null)
        {  $torneos=DB::table('producto as c')
-       ->select('c.idproducto','c.nombre','c.cantidad','c.precio','c.categoria');
+       ->select('c.idproducto','c.nombre','c.cantidad','c.precio','c.categoria','c.imagen');
        $torneos=$torneos->get();
          if($request->user()->hasRole('admin'))
               return view('index',["producto"=>$torneos]);

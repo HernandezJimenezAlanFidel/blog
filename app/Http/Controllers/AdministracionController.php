@@ -6,17 +6,19 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Redirect;
 use DB;
+use Illuminate\Support\Str;
 use App\Models\Cliente;
 use App\Models\Tarjeta;
 use App\Models\Producto;
 use App\Models\Users;
 use App\Models\UserRole;
+use App\Traits\UploadTrait;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AdministracionController extends Controller
 {
-
+    use UploadTrait;
     public function registrocliente(Request $request)
     {
 
@@ -84,8 +86,8 @@ class AdministracionController extends Controller
       $producto->save();
 
 
-    $imageName = time().'.'.request()->imagen->getClientOriginalExtension();
-    request()->imagen->move(public_path('images'), $imageName);
+  //  $imageName = time().'.'.request()->imagen->getClientOriginalExtension();
+    //request()->imagen->move(public_path('images'), $imageName);
 
       return Redirect::to('/indexproducto');
   }
@@ -103,10 +105,30 @@ class AdministracionController extends Controller
     $producto->cantidad=$request->get('cantidad_producto');
     $producto->precio=$request->get('precio_producto');
     $producto->categoria=$request->get('categoria_producto');
-    $producto->save();
 
-    $imageName = time().'.'.request()->imagen->getClientOriginalExtension();
-    request()->imagen->move(public_path('images'), $imageName);
+     if ($request->hasFile('imagen')) {
+       // Get image file
+               $image = $request->file('imagen');
+               // Make a image name based on user name and current timestamp
+               $name = Str::slug($request->input('nombre_producto')).'_'.time();
+
+               // Define folder path
+               $folder = '/uploads/images/';
+               $this->deleteOne($folder,'public',$producto->imagen);
+               // Make a file path where image will be stored [ folder path + file name + file extension]
+               $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
+               // Upload image
+               $this->uploadOne($image, $folder, 'public', $name);
+               // Set user profile image path in database to filePath
+               $producto->imagen = $filePath;
+           }
+           else {
+
+             $folder = '/uploads/images/';
+             $filePath=$folder.'defecto.jpg';
+             $producto->imagen = $filePath;
+           }
+           $producto->save();
     return Redirect::to('/indexproducto');
 }
 

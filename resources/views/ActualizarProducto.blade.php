@@ -12,8 +12,8 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" method="PUT" action="/actualizarproducto/{{$producto->idproducto}}" enctype="multipart/form-data">
-
+        <form role="form" method="post" action="/actualizarproducto/{{$producto->idproducto}}" enctype="multipart/form-data">
+          @csrf
           <div class="card-body">
             <div class="form-group">
               <label for="nombreproducto">idproducto</label>
@@ -46,7 +46,7 @@
 
             </div>
             <div class="form-group">
-              <label for="exampleInputFile">Subir archivo</label>
+              <label for="exampleInputFile">Imagen</label>
               <div class="input-group">
                 <div class="custom-file">
                   <input type="file" name="imagen" class="custom-file-input" id="imagen">

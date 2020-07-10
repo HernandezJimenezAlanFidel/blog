@@ -1,0 +1,24 @@
+#fondo{
+  width: 200px;
+  height: 150px;
+  background: #CCC;
+  overflow: hidden;
+}
+#fondo2{
+  width: 150px;
+  height: 150px;
+  background: #CCC;
+  overflow: hidden;
+}
+#boton{
+  width: 170px;
+  height: 290px;
+
+  overflow: hidden;
+}
+#imagen{
+  width: 100px;
+  height: 100px;
+  background: #CCC;
+  overflow: hidden;
+}

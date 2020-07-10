@@ -41,7 +41,7 @@ Route::get('indexproducto','AdministracionController@indexproducto');
 Route::post('crearproducto','AdministracionController@crearproducto');
 Route::get('registroproducto','AdministracionController@registroproducto');
 Route::get('editarproducto/{id}','AdministracionController@editproducto');
-Route::get('actualizarproducto/{id}','AdministracionController@actualizarproducto');
+Route::post('actualizarproducto/{id}','AdministracionController@actualizarproducto');
 Route::get('eliminarproducto/{id}','AdministracionController@eliminarproducto');
 
 

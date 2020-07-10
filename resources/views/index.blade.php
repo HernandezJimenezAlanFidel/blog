@@ -30,10 +30,10 @@
           <button value="{{$tor->precio}}" name="{{$tor->nombre}}">
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white"
-               style="background: url('dist/img/photo1.png') center center;">
+               style="background: url('dist/img/photo1.png')center center;" id="fondo">
           </div>
         <div class="widget-user-image">
-          <img class="img-circle" src="dist/img/user3-128x128.jpg" alt="User Avatar">
+          <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar" id="imagen">
         </div>
           <div class="card-footer p-0 m-4">
             <div class="row">
@@ -67,13 +67,14 @@
 <div class="col-md-3">
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user">
-          <button value="{{$tor->precio}}" name="{{$tor->nombre}}">
+          <button value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white"
-               style="background: url('dist/img/photo1.png') center center;">
+               style="background: url('dist/img/photo1.png') center center;"id="fondo2">
           </div>
         <div class="widget-user-image">
-          <img class="img-circle" src="dist/img/user3-128x128.jpg" alt="User Avatar">
+          <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
         </div>
           <div class="card-footer p-0 m-4">
             <div class="row">
@@ -107,10 +108,10 @@
                            <button value="{{$tor->precio}}" name="{{$tor->nombre}}">
                            <!-- Add the bg color to the header using any of the bg-* classes -->
                            <div class="widget-user-header text-white"
-                                style="background: url('dist/img/photo1.png') center center;">
+                                style="background: url('dist/img/photo1.png') center center;" id="fondo2">
                            </div>
                          <div class="widget-user-image">
-                           <img class="img-circle" src="dist/img/user3-128x128.jpg" alt="User Avatar">
+                           <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar" id="imagen">
                          </div>
                            <div class="card-footer p-0 m-4">
                              <div class="row">
@@ -145,10 +146,10 @@
                            <button value="{{$tor->precio}}" name="{{$tor->nombre}}">
                            <!-- Add the bg color to the header using any of the bg-* classes -->
                            <div class="widget-user-header text-white"
-                                style="background: url('dist/img/photo1.png') center center;">
+                                style="background: url('dist/img/photo1.png') center center;" id="fondo2">
                            </div>
                          <div class="widget-user-image">
-                           <img class="img-circle" src="dist/img/user3-128x128.jpg" alt="User Avatar">
+                           <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar" id="imagen">
                          </div>
                            <div class="card-footer p-0 m-4">
                              <div class="row">
