@@ -1,15 +1,20 @@
 @extends('layouts.base')
 @section ('contenido')
+
+<div class="row">
+
+</div>
 <div class="row">
   <div class="col-12">
       <!-- /.card-header -->
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Comida  Ruta 66</h3>
+        <h3 class="card-title">Membresia  Ruta 66</h3>
+
       </div>
       <!-- /.card-header -->
       <div class="card-body">
-        <table id="example1" class="table table-bordered table-striped">
+        <table id="tabla" class="table table-striped table-bordered table-sm">
           <thead>
           <tr>
             <th>Id</th>
@@ -36,15 +41,6 @@
           @include('Modals.ModalMembresia')
         @endforeach
           </tbody>
-          <tfoot>
-          <tr>
-            <th>Rendering engine</th>
-            <th>Browser</th>
-            <th>Platform(s)</th>
-            <th>Engine version</th>
-            <th>CSS grade</th>
-          </tr>
-          </tfoot>
         </table>
       </div>
       <!-- /.card-body -->
@@ -53,5 +49,21 @@
   </div>
   <!-- /.col -->
 </div>
+<a href="/registromembresia" class="btn btn-app">
+ <span class="badge bg-purple"><i class="fas fa-plus-circle"> Agregar</i></span>
+ <i class="fas fa-credit-card"></i> Miembro
+</a>
+<script src="{{asset('https://code.jquery.com/jquery-3.3.1.js')}}"></script>
+<script src="{{asset('https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js')}}"></script>
+<link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css')}}">
+<script>
+	$(document).ready(function() {
+    $('#example1').DataTable({
+      "searching": true // false to disable search (or any other option)
+    });
+    $('.dataTables_length').addClass('bs-select');
+	} );
+</script>
 <!-- /.row -->
 @endsection

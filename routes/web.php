@@ -15,23 +15,36 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','InicioController@index');
 Route::get('inicio','InicioController@index');
+
+Route::get('indexcliente','AdministracionController@indexcliente');
+Route::post('crearcliente','AdministracionController@crearcliente');
+Route::get('registrocliente','AdministracionController@registrocliente');
 Route::get('editarcliente/{id}','AdministracionController@editcliente');
 Route::get('actualizarcliente/{id}','AdministracionController@actualizarcliente');
 Route::get('eliminarcliente/{id}','AdministracionController@eliminarcliente');
+
 Route::get('eliminartarjeta/{id}','AdministracionController@eliminartarjeta');
 
 Route::get('categorias','InicioController@categorias');
 Route::get('cortecaja','InicioController@cortecaja');
 Route::get('recargas','InicioController@recargas');
 Route::get('base','InicioController@base');
-Route::get('indexcliente','AdministracionController@indexcliente');
-Route::get('indexproducto','AdministracionController@indexproducto');
-Route::get('indexmembresia','AdministracionController@indexmembresia');
-Route::get('indextrabajador','AdministracionController@indextrabajador');
 
-Route::post('crearcliente','AdministracionController@crearcliente');
-Route::get('registrocliente','AdministracionController@registrocliente');
+Route::get('indexmembresia','AdministracionController@indexmembresia');
+
+
+Route::get('indextrabajador','AdministracionController@indextrabajador');
+Route::get('registrotrabajador','AdministracionController@registrotrabajador');
+Route::post('creartrabajador','AdministracionController@creartrabajador');
+//cliente
+Route::get('indexproducto','AdministracionController@indexproducto');
+Route::post('crearproducto','AdministracionController@crearproducto');
 Route::get('registroproducto','AdministracionController@registroproducto');
+Route::get('editarproducto/{id}','AdministracionController@editproducto');
+Route::get('actualizarproducto/{id}','AdministracionController@actualizarproducto');
+Route::get('eliminarproducto/{id}','AdministracionController@eliminarproducto');
+
+
 Route::get('registrotrabajador','AdministracionController@registrotrabajador');
 Route::get('registromembresia','AdministracionController@registromembresia');
 

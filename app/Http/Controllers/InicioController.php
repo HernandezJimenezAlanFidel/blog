@@ -4,19 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Database\Eloquent\Model;
+use DB;
 class InicioController extends Controller
 {
     public function index(Request $request)
     {
-       /*if(Auth::check())
-       return view("index3");
-       else
-       {
-         return redirect('/login');
-       }*/
-       $request->user()->authorizeRoles('admin');
-       return view("index3");
+       /*if($request->user==null)
+       {  //if($request->user->hasRole('admin'))
+
+            return Redirect::to('/login');
+          /*  else {
+              if($request->user->hasRole('vendedor'))
+                return view("indexvendedor");
+            }*/
+
+       if($request->user()!=null)
+       {  $torneos=DB::table('producto as c')
+       ->select('c.idproducto','c.nombre','c.cantidad','c.precio','c.categoria');
+       $torneos=$torneos->get();
+         if($request->user()->hasRole('admin'))
+              return view('index',["producto"=>$torneos]);
+              else {
+                if($request->user()->hasRole('vendedor'))
+                  return view('indexvendedor',["producto"=>$torneos]);
+              }
+      }
+      else
+       return Redirect::to('/login');
     }
     public function categorias(Request $request)
     {

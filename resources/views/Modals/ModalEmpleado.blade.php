@@ -1,6 +1,6 @@
 <div class="modal fade modal-slide-in-right" aria-hidden="true"
-role="dialog" tabindex="-1" id="modal-delete-{{$tor->idproducto}}">
-<form role="form" method="PUT" action="/eliminarproducto/{{$tor->idproducto}}">
+role="dialog" tabindex="-1" id="modal-delete-{{$tor->idempleado}}">
+<form role="form" method="PUT" action="/eliminarempleado/{{$tor->idempleado}}">
 
 	<div class="modal-dialog">
 		<div class="modal-content">

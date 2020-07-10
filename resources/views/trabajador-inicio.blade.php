@@ -6,7 +6,7 @@
         <!-- /.card-header -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Productos  Ruta 66</h3>
+          <h3 class="card-title">Empleados  Ruta 66</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -15,30 +15,23 @@
             <tr>
               <th>Id</th>
               <th>Nombre</th>
-              <th>Stock</th>
-              <th>Costo</th>
-              <th>Categoria</th>
-              <th>Opciones</th>
+              <th>tipo de empleado</th>
+              <th>email</th>
             </tr>
             </thead>
             <tbody>
-              @foreach ($producto as $tor)
+              @foreach ($empleado as $tor)
             <tr>
-              <td>{{ $tor->idproducto}}</td>
+              <td>{{ $tor->idempleado}}</td>
               <td>{{ $tor->nombre}}</td>
-              <td>{{ $tor->cantidad}}</td>
-              <td>{{ $tor->precio}}</td>
-              @if ($tor->categoria == 1)
-              <td>Alimento</td>
-              @else
-              <td>Atraccion</td>
-              @endif
+              <td>{{ $tor->tipo}}</td>
+              <td>{{ $tor->email}}</td>
               <td>
-                <a href="/editarproducto/{{$tor->idproducto}}"><i class="fa fa-edit"></i></a>
-              <a href=""data-target="#modal-delete-{{$tor->idproducto}}" data-toggle="modal"><i class="fas fa-trash"></i></a>
+                <a href="/editarempleado/{{$tor->idempleado}}"><i class="fa fa-edit"></i></a>
+                <a href=""data-target="#modal-delete-{{$tor->idempleado}}" data-toggle="modal"><i class="fas fa-trash"></i></a>
               </td>
             </tr>
-            @include('Modals.ModalProducto')
+            @include('Modals.ModalEmpleado')
           @endforeach
             </tbody>
           </table>
@@ -49,9 +42,9 @@
     </div>
     <!-- /.col -->
   </div>
-  <a href="/registroproducto" class="btn btn-app">
+  <a href="/registrotrabajador" class="btn btn-app">
    <span class="badge bg-purple"><i class="fas fa-plus-circle"> Agregar</i></span>
-   <i class="fas fa-barcode"></i> Producto
+   <i class="fas fa-user"></i> Producto
   </a>
   <!-- /.row -->
 </section>

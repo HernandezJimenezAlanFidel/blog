@@ -29,10 +29,10 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/" class="nav-link">Ruta66</a>
+        <a href="/inicio" class="nav-link">Ruta66</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/" class="nav-link"></a>
+        <a href="/inicio" class="nav-link"></a>
 
       </li>
 
@@ -79,7 +79,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/" class="brand-link">
+    <a href="/inicio" class="brand-link">
       <img center src="{{asset('dist/img/LOGO2.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-10"
            style="opacity: .8">
       <span class="brand-text font-weight-light">.</span>
@@ -145,7 +145,7 @@
             </a>
           </li>
 
-
+         
           <li class="nav-header">ADMINISTRACIÓN</li>
           <li class="nav-item">
             <a href="/indexcliente" class="nav-link">
