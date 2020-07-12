@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Redirect;
 use PDF;
 use DB;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+use Mike42\Escpos\Printer;
 use Illuminate\Support\Str;
 use App\Models\Cliente;
 use App\Models\Tarjeta;
@@ -61,6 +63,7 @@ class AdministracionController extends Controller
     $cliente->save();
     return Redirect::to('/indexcliente');
   }
+
 
     ///metodos producto
     public function indexproducto(Request $request)
@@ -296,5 +299,30 @@ class AdministracionController extends Controller
     }
 
     }
+
+
+
+    //impresion termica
+    public function impresion()
+    {
+      $nombreImpresora = "POS-58";
+      $connector = new WindowsPrintConnector($nombreImpresora);
+      $impresora = new Printer($connector);
+      $impresora->setJustification(Printer::JUSTIFY_CENTER);
+      $impresora->setTextSize(2, 2);
+      $impresora->text("Imprimiendo\n");
+      $impresora->text("ticket\n");
+      $impresora->text("desde\n");
+      $impresora->text("Laravel\n");
+      $impresora->setTextSize(1, 1);
+      $impresora->text("https://parzibyte.me");
+      $impresora->feed(5);
+      $impresora->close();
+
+      return Redirect::to('/');
+
+    }
+
+
 }
 ?>

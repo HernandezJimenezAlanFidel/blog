@@ -50,6 +50,7 @@ Route::get('registrotrabajador','AdministracionController@registrotrabajador');
 Route::get('registromembresia','AdministracionController@registromembresia');
 
 Route::get('crearreporte','AdministracionController@corte');
+Route::get('impresion','AdministracionController@impresion');
 
 Auth::routes();
 

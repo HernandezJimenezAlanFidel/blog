@@ -28,7 +28,7 @@
               <div class="tab-pane active" id="atraccion">
                <div class="row" id="botones">
 @foreach ($producto as $tor)
-@if($tor->categoria==1)
+@if($tor->categoria==2)
 <div class="col-md-4">
         <!-- Widget: user widget style 1 -->
 
@@ -108,7 +108,7 @@
                <div class="row" id="botones">
 
 @foreach ($producto as $tor)
-@if($tor->categoria==3)
+@if($tor->categoria==2)
 <div class="col-md-3">
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user">
