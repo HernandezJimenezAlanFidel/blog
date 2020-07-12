@@ -35,8 +35,14 @@
               <label for="tipo">Categoria</label>
 
               <select class="form-control" name="categoria_producto" id="categoria_producto">
-                <option value="1" >Alimento</option>
-                <option value="2">Atraccion</option>
+                <option value="1" selected>Alimento</option>
+                <option value="2">Atracciones</option>
+                <option value="3">Cocteles</option>
+                <option value="4">Cocteles sin alcohol</option>
+                <option value="5">Copeo</option>
+                <option value="6">Botellas</option>
+                <option value="7">Cervezas</option>
+                <option value="8">Membresia</option>
               </select>
 
             </div>
@@ -45,7 +51,7 @@
               <div class="input-group">
                 <div class="custom-file">
                   <input accept="image/*" type="file" name="imagen" class="custom-file-input" id="imagen">
-                  <label class="custom-file-label" for="exampleInputFile">Buscar archivo</label>
+                  <label class="custom-file-label" for="imagen">Buscar archivo</label>
                 </div>
               </div>
             </div>

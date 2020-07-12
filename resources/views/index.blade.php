@@ -11,10 +11,15 @@
         <!-- Custom Tabs -->
         <div class="card">
           <div class="card-header d-flex p-0">
-            <ul class="nav nav-pills ml-auto p-2">
+            <ul class="nav nav-pills ml-auto p-1">
               <li class="nav-item"><a class="nav-link active" href="#atraccion" data-toggle="tab"><i class="fas fa-th"></i> Atracción</a></li>
               <li class="nav-item"><a class="nav-link" href="#alimento" data-toggle="tab"><i class="fas fa-hamburger"> </i> Alimento</a></li>
-              <li class="nav-item"><a class="nav-link" href="#membresia" data-toggle="tab"><i class="fas fa-money-check-alt"> </i> Membresia</a></li>
+              <li class="nav-item"><a class="nav-link" href="#cocteles" data-toggle="tab"><i class="fas fa-cocktail"> </i>Cocteles</a></li>
+              <li class="nav-item"><a class="nav-link" href="#coctelessin" data-toggle="tab"><i class="fas fa-glass-martini-alt"> </i>Cocteles sin alcohol</a></li>
+              <li class="nav-item"><a class="nav-link" href="#copeo" data-toggle="tab"><i class="fas fa-glass-whiskey"> </i>Copeo</a></li>
+              <li class="nav-item"><a class="nav-link" href="#botellas" data-toggle="tab"><i class="fas fa-wine-bottle"> </i>Botellas</a></li>
+              <li class="nav-item"><a class="nav-link" href="#cervezas" data-toggle="tab"><i class="fas fa-beer"> </i>Cervezas</a></li>
+              <!--<li class="nav-item"><a class="nav-link" href="#membresia" data-toggle="tab"><i class="fas fa-money-check-alt"> </i> Membresia</a></li>-->
 
             </ul>
           </div><!-- /.card-header -->
@@ -23,6 +28,7 @@
               <div class="tab-pane active" id="atraccion">
                <div class="row" id="botones">
 @foreach ($producto as $tor)
+@if($tor->categoria==1)
 <div class="col-md-4">
         <!-- Widget: user widget style 1 -->
 
@@ -54,16 +60,16 @@
 
         <!-- /.widget-user -->
 </div>
+@endif
 @endforeach
         </div>
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="alimento">
-                <div class="card-footer"> BEBIDA</div>
                <div class="row" id="botones">
 
 @foreach ($producto as $tor)
-
+@if($tor->categoria==1)
 <div class="col-md-3">
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user">
@@ -92,95 +98,206 @@
         </div>
         </div>
         <!-- /.widget-user -->
-
+@endif
       @endforeach
         </div>
-
-<div class="card-footer"> BEBIDA CON ALCOHOL</div>
-               <div class="row" id="botones">
-
-
-                 @foreach ($producto as $tor)
-
-                 <div class="col-md-3">
-                         <!-- Widget: user widget style 1 -->
-                         <div class="card card-widget widget-user">
-                           <button value="{{$tor->precio}}" name="{{$tor->nombre}}">
-                           <!-- Add the bg color to the header using any of the bg-* classes -->
-                           <div class="widget-user-header text-white"
-                                style="background: url('dist/img/photo1.png') center center;" id="fondo2">
-                           </div>
-                         <div class="widget-user-image">
-                           <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar" id="imagen">
-                         </div>
-                           <div class="card-footer p-0 m-4">
-                             <div class="row">
-                               <div class="col-sm-12">
-                                 <div class="description-block">
-                                   <h1 class="text-sm">{{$tor->nombre}}</h1>
-                                   <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
-                                   <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
-                                 </div>
-                                 <!-- /.description-block -->
-                               </div>
-                             </div>
-                             <!-- /.row -->
-                           </div>
-                         </div>
-                         </div>
-                         <!-- /.widget-user -->
-
-                       @endforeach
-</div>
-
-
-<div class="card-footer"> COMIDA</div>
-               <div class="row" id="botones">
-
-
-                 @foreach ($producto as $tor)
-
-                 <div class="col-md-3">
-                         <!-- Widget: user widget style 1 -->
-                         <div class="card card-widget widget-user">
-                           <button value="{{$tor->precio}}" name="{{$tor->nombre}}">
-                           <!-- Add the bg color to the header using any of the bg-* classes -->
-                           <div class="widget-user-header text-white"
-                                style="background: url('dist/img/photo1.png') center center;" id="fondo2">
-                           </div>
-                         <div class="widget-user-image">
-                           <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar" id="imagen">
-                         </div>
-                           <div class="card-footer p-0 m-4">
-                             <div class="row">
-                               <div class="col-sm-12">
-                                 <div class="description-block">
-                                   <h1 class="text-sm">{{$tor->nombre}}</h1>
-                                   <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
-                                   <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
-                                 </div>
-                                 <!-- /.description-block -->
-                               </div>
-                             </div>
-                             <!-- /.row -->
-                           </div>
-                         </div>
-                         </div>
-                         <!-- /.widget-user -->
-
-                       @endforeach
-
-
-</div>
-
-
-
-
-
-
-
               </div>
               <!-- /.tab-pane -->
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="cocteles">
+               <div class="row" id="botones">
+
+@foreach ($producto as $tor)
+@if($tor->categoria==3)
+<div class="col-md-3">
+        <!-- Widget: user widget style 1 -->
+        <div class="card card-widget widget-user">
+          <button value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+
+          <!-- Add the bg color to the header using any of the bg-* classes -->
+          <div class="widget-user-header text-white"
+               style="background: url('dist/img/photo1.png') center center;"id="fondo2">
+          </div>
+        <div class="widget-user-image">
+          <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
+        </div>
+          <div class="card-footer p-0 m-4">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="description-block">
+                  <h1 class="text-sm">{{$tor->nombre}}</h1>
+                  <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
+                  <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+            </div>
+            <!-- /.row -->
+          </div>
+        </div>
+        </div>
+        <!-- /.widget-user -->
+@endif
+      @endforeach
+        </div>
+              </div>
+              <!-- /.tab-pane -->
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="coctelessin">
+               <div class="row" id="botones">
+
+@foreach ($producto as $tor)
+@if($tor->categoria==4)
+<div class="col-md-3">
+        <!-- Widget: user widget style 1 -->
+        <div class="card card-widget widget-user">
+          <button value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+
+          <!-- Add the bg color to the header using any of the bg-* classes -->
+          <div class="widget-user-header text-white"
+               style="background: url('dist/img/photo1.png') center center;"id="fondo2">
+          </div>
+        <div class="widget-user-image">
+          <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
+        </div>
+          <div class="card-footer p-0 m-4">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="description-block">
+                  <h1 class="text-sm">{{$tor->nombre}}</h1>
+                  <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
+                  <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+            </div>
+            <!-- /.row -->
+          </div>
+        </div>
+        </div>
+        <!-- /.widget-user -->
+@endif
+      @endforeach
+        </div>
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="copeo">
+               <div class="row" id="botones">
+
+@foreach ($producto as $tor)
+@if($tor->categoria==5)
+<div class="col-md-3">
+        <!-- Widget: user widget style 1 -->
+        <div class="card card-widget widget-user">
+          <button value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+
+          <!-- Add the bg color to the header using any of the bg-* classes -->
+          <div class="widget-user-header text-white"
+               style="background: url('dist/img/photo1.png') center center;"id="fondo2">
+          </div>
+        <div class="widget-user-image">
+          <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
+        </div>
+          <div class="card-footer p-0 m-4">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="description-block">
+                  <h1 class="text-sm">{{$tor->nombre}}</h1>
+                  <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
+                  <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+            </div>
+            <!-- /.row -->
+          </div>
+        </div>
+        </div>
+        <!-- /.widget-user -->
+@endif
+      @endforeach
+        </div>
+              </div>
+              <!-- /.tab-pane -->
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="botellas">
+               <div class="row" id="botones">
+
+@foreach ($producto as $tor)
+@if($tor->categoria==6)
+<div class="col-md-3">
+        <!-- Widget: user widget style 1 -->
+        <div class="card card-widget widget-user">
+          <button value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+
+          <!-- Add the bg color to the header using any of the bg-* classes -->
+          <div class="widget-user-header text-white"
+               style="background: url('dist/img/photo1.png') center center;"id="fondo2">
+          </div>
+        <div class="widget-user-image">
+          <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
+        </div>
+          <div class="card-footer p-0 m-4">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="description-block">
+                  <h1 class="text-sm">{{$tor->nombre}}</h1>
+                  <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
+                  <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+            </div>
+            <!-- /.row -->
+          </div>
+        </div>
+        </div>
+        <!-- /.widget-user -->
+@endif
+      @endforeach
+        </div>
+              </div>
+              <!-- /.tab-pane -->
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="cervezas">
+               <div class="row" id="botones">
+
+@foreach ($producto as $tor)
+@if($tor->categoria==7)
+<div class="col-md-3">
+        <!-- Widget: user widget style 1 -->
+        <div class="card card-widget widget-user">
+          <button value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+
+          <!-- Add the bg color to the header using any of the bg-* classes -->
+          <div class="widget-user-header text-white"
+               style="background: url('dist/img/photo1.png') center center;"id="fondo2">
+          </div>
+        <div class="widget-user-image">
+          <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
+        </div>
+          <div class="card-footer p-0 m-4">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="description-block">
+                  <h1 class="text-sm">{{$tor->nombre}}</h1>
+                  <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
+                  <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+            </div>
+            <!-- /.row -->
+          </div>
+        </div>
+        </div>
+        <!-- /.widget-user -->
+@endif
+      @endforeach
+        </div>
+              </div>
+              <!-- /.tab-pane -->
+
               <div class="tab-pane" id="membresia">
                 <form role="form">
             <div class="card-body">
@@ -255,6 +372,7 @@
                         <tr>
                           <th style="width: 10px">#</th>
                           <th>Servicio</th>
+                          <th>Cantidad</th>
                           <th style="width: 40px">Precio</th>
                           <th>..</th>
 
@@ -282,7 +400,7 @@ $(document).ready(function(){
        var nuevaFila="<tr>";
            nuevaFila+="<td>"+"#"+filas;+"</td>";
            nuevaFila+="<td>"+$(this).attr('name')+"</td>";
-           nuevaFila+="<td><input type=\"text\" id=\"cantidad_producto\" name=\"precio_producto\" placeholder=\" \" step=\"0\" min=\"0\"></td>"
+           nuevaFila+="<td><input type=\"text\" class=\"form-control\" id=\"cantidad_producto2\" name=\"cantidad_producto2\" placeholder=\" \" value=\"1\"step=\"0\" min=\"0\" max=50></td>"
            nuevaFila+="<td>$"+$(this).val()+"</td>";
            nuevaFila+="<td><a id=\"eliminar\"href=\"\"  data-toggle=\"modal\"><i class=\"fas fa-trash\"></i></a></td>"
 

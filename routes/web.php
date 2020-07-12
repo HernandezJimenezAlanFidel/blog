@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','InicioController@index');
 Route::get('inicio','InicioController@index');
+Route::get('inicio2','InicioController@prueba');
 
 Route::get('indexcliente','AdministracionController@indexcliente');
 Route::post('crearcliente','AdministracionController@crearcliente');
@@ -48,7 +49,7 @@ Route::get('eliminarproducto/{id}','AdministracionController@eliminarproducto');
 Route::get('registrotrabajador','AdministracionController@registrotrabajador');
 Route::get('registromembresia','AdministracionController@registromembresia');
 
-
+Route::get('crearreporte','AdministracionController@corte');
 
 Auth::routes();
 

@@ -39,6 +39,11 @@ class InicioController extends Controller
 
        return view("categorias");
     }
+    public function prueba(Request $request)
+    {
+
+       return view("advanced");
+    }
     public function cortecaja(Request $request)
     {
 

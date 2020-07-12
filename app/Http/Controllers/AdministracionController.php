@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Redirect;
+use PDF;
 use DB;
 use Illuminate\Support\Str;
 use App\Models\Cliente;
@@ -122,12 +123,6 @@ class AdministracionController extends Controller
                // Set user profile image path in database to filePath
                $producto->imagen = $filePath;
            }
-           else {
-
-             $folder = '/uploads/images/';
-             $filePath=$folder.'defecto.jpg';
-             $producto->imagen = $filePath;
-           }
            $producto->save();
     return Redirect::to('/indexproducto');
 }
@@ -220,6 +215,86 @@ class AdministracionController extends Controller
       $UserRole->save();
 
       return Redirect::to('/indextrabajador');
+    }
+
+    public function corte(Request $request)
+    {$totalIngresos=0;
+      if($request->get('tipocorte')=="0")
+      { $fecha=$request->get('fecha');
+
+         if($request->get('categoria')=="0")
+          {
+            error_log('entrada1');
+            $torneos=DB::table('venta')
+            ->where('fecha_venta','=',$fecha)
+            ->get();
+
+            foreach ($torneos as $venta)
+                $totalIngresos+=$venta->total;
+
+
+            $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos];
+            return PDF::loadView('corte', $data)->stream('corte.pdf');
+
+            //return view('corte',["venta"=>$torneos,"fecha"=>$fecha]);
+          }
+          else {
+            error_log('entrada2');
+            $torneos=DB::table('venta as v')
+            ->join('detalle_venta as dv','dv.idventa','=','v.idventa')
+            ->join('producto as p','p.idproducto','=','dv.idproducto')
+            ->select('v.idventa as idventa','v.idusuario','p.nombre as nombreproducto','dv.cantidad as cantidadventa'
+                      ,'dv.monto as montoventa','v.fecha_venta as fecha_venta','v.fecha_venta','v.metodo_pago as metodopago')
+            ->where('p.categoria','=',$request->get('categoria'))
+            ->where('fecha_venta','=',$fecha)
+            ->get();
+
+            foreach ($torneos as $venta)
+                $totalIngresos+=$venta->montoventa;
+
+
+            $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos];
+            return PDF::loadView('cortecategoria', $data)->stream('corte.pdf');
+            }
+    }
+    else {
+
+      $fecha=$request->get('reservation');
+      $split = explode('-', $fecha);
+      $fechainicio=date("Y-m-d", strtotime($split[0]));
+      $fechafinal=date("Y-m-d", strtotime($split[1]));
+          if($request->get('categoria')=="0")
+            {
+              $torneos=DB::table('venta')
+              ->whereBetween('fecha_venta',[$fechainicio,$fechafinal])
+              ->get();
+              foreach ($torneos as $venta)
+                  $totalIngresos+=$venta->total;
+
+
+              $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos];
+              return PDF::loadView('corte', $data)->stream('corte.pdf');
+            }
+         else
+          {
+            $torneos=DB::table('venta as v')
+            ->join('detalle_venta as dv','dv.idventa','=','v.idventa')
+            ->join('producto as p','p.idproducto','=','dv.idproducto')
+            ->select('v.idventa as idventa','v.idusuario','p.nombre as nombreproducto','dv.cantidad as cantidadventa'
+                      ,'dv.monto as montoventa','v.fecha_venta as fecha_venta','v.metodo_pago as metodopago')
+            ->where('p.categoria','=',$request->get('categoria'))
+            ->whereBetween('fecha_venta',[$fechainicio,$fechafinal])
+            ->get();
+
+            foreach ($torneos as $venta)
+                $totalIngresos+=$venta->montoventa;
+
+
+            $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos];
+            return PDF::loadView('cortecategoria', $data)->stream('corte.pdf');
+        }
+    }
+
     }
 }
 ?>

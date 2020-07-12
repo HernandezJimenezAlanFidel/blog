@@ -1,6 +1,11 @@
 @extends('layouts.base')
 @section ('contenido')
 
+<script type="text/javascript">
+$(document).ready(function () {
+  bsCustomFileInput.init();
+});
+</script>
 <div class="container-fluid">
   <div class="row">
     <!-- left column -->
@@ -35,22 +40,92 @@
               <label for="tipo">Categoria</label>
 
               <select class="form-control" name="categoria_producto" id="categoria_producto">
-                @if($producto->categoria==1)
+                @if ($producto->categoria == 1)
                 <option value="1" selected>Alimento</option>
-                <option value="2">Atraccion</option>
-                @else
+                <option value="2">Atracciones</option>
+                <option value="3">Cocteles</option>
+                <option value="4">Cocteles sin alcohol</option>
+                <option value="5">Copeo</option>
+                <option value="6">Botellas</option>
+                <option value="7">Cervezas</option>
+                <option value="8">Membresia</option>
+                @elseif ($producto->categoria == 2)
                 <option value="1" >Alimento</option>
-                <option value="2"selected>Atraccion</option>
+                <option value="2" selected>Atracciones</option>
+                <option value="3">Cocteles</option>
+                <option value="4">Cocteles sin alcohol</option>
+                <option value="5">Copeo</option>
+                <option value="6">Botellas</option>
+                <option value="7">Cervezas</option>
+                <option value="8">Membresia</option>
+                @elseif ($producto->categoria == 3)
+                <option value="1">Alimento</option>
+                <option value="2">Atracciones</option>
+                <option value="3" selected>Cocteles</option>
+                <option value="4">Cocteles sin alcohol</option>
+                <option value="5">Copeo</option>
+                <option value="6">Botellas</option>
+                <option value="7">Cervezas</option>
+                <option value="8">Membresia</option>
+                @elseif ($producto->categoria == 4)
+                <option value="1" >Alimento</option>
+                <option value="2">Atracciones</option>
+                <option value="3">Cocteles</option>
+                <option value="4" selected>Cocteles sin alcohol</option>
+                <option value="5">Copeo</option>
+                <option value="6">Botellas</option>
+                <option value="7">Cervezas</option>
+                <option value="8">Membresia</option>
+                @elseif ($producto->categoria == 5)
+                <option value="1">Alimento</option>
+                <option value="2">Atracciones</option>
+                <option value="3">Cocteles</option>
+                <option value="4">Cocteles sin alcohol</option>
+                <option value="5"selected>Copeo</option>
+                <option value="6">Botellas</option>
+                <option value="7">Cervezas</option>
+                <option value="8">Membresia</option>
+                @elseif ($producto->categoria == 6)
+                <option value="1">Alimento</option>
+                <option value="2">Atracciones</option>
+                <option value="3">Cocteles</option>
+                <option value="4">Cocteles sin alcohol</option>
+                <option value="5">Copeo</option>
+                <option value="6" selected>Botellas</option>
+                <option value="7">Cervezas</option>
+                <option value="8">Membresia</option>
+                @elseif ($producto->categoria == 7)
+                <option value="1">Alimento</option>
+                <option value="2">Atracciones</option>
+                <option value="3">Cocteles</option>
+                <option value="4">Cocteles sin alcohol</option>
+                <option value="5">Copeo</option>
+                <option value="6">Botellas</option>
+                <option value="7" selected>Cervezas</option>
+                <option value="8">Membresia</option>
+                @else
+                <option value="1">Alimento</option>
+                <option value="2">Atracciones</option>
+                <option value="3">Cocteles</option>
+                <option value="4">Cocteles sin alcohol</option>
+                <option value="5">Copeo</option>
+                <option value="6">Botellas</option>
+                <option value="7">Cervezas</option>
+                <option value="8" selected>Membresia</option>
                 @endif
               </select>
 
             </div>
             <div class="form-group">
-              <label for="exampleInputFile">Imagen</label>
+              <label for="exampleInputFile">Imagen Actual</label>
+              <br>
+               <img src="{{$producto->imagen}}" alt="alternatetext" id="imagenactualizar">
+               <br>
+               <label for="exampleInputFile">Buscar Imagen</label>
               <div class="input-group">
                 <div class="custom-file">
-                  <input type="file" name="imagen" class="custom-file-input" id="imagen">
-                  <label class="custom-file-label" for="exampleInputFile">Buscar archivo</label>
+                  <input type="file" accept="image/*" name="imagen" class="custom-file-input" id="imagen">
+                  <label class="custom-file-label" for="imagen">Buscar archivo</label>
                 </div>
               </div>
             </div>
