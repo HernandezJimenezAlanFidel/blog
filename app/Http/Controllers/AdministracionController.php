@@ -321,6 +321,11 @@ class AdministracionController extends Controller
 
       return Redirect::to('/');
 
+
+    }
+    public function impresion2()
+    {
+      return view('Ticket');
     }
 
 
