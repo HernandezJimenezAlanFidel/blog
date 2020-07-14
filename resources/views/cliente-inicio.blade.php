@@ -12,7 +12,7 @@
         </div>
 
         <!-- /.card-header -->
-        <div class="card-body">
+        <div id="app" class="card-body">
           <table id="table_rutas" class="table table-bordered table-striped">
             <thead>
             <tr>

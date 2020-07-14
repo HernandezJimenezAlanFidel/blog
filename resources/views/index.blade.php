@@ -3,6 +3,7 @@
 
 <!--=======================CATEGORIAS===========================-->
 
+<script src="{{ asset('js/app.js') }}" defer></script>
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-8" >
@@ -33,7 +34,7 @@
         <!-- Widget: user widget style 1 -->
 
         <div class="card card-widget widget-user">
-          <button value="{{$tor->precio}}" name="{{$tor->nombre}}">
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}">
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white"
                style="background: url('dist/img/photo1.png')center center;" id="fondo">
@@ -73,7 +74,7 @@
 <div class="col-md-3">
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user">
-          <button value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
 
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white"
@@ -108,11 +109,11 @@
                <div class="row" id="botones">
 
 @foreach ($producto as $tor)
-@if($tor->categoria==2)
+@if($tor->categoria==3)
 <div class="col-md-3">
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user">
-          <button value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
 
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white"
@@ -151,7 +152,7 @@
 <div class="col-md-3">
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user">
-          <button value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
 
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white"
@@ -189,7 +190,7 @@
 <div class="col-md-3">
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user">
-          <button value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
 
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white"
@@ -228,7 +229,7 @@
 <div class="col-md-3">
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user">
-          <button value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
 
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white"
@@ -267,7 +268,7 @@
 <div class="col-md-3">
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user">
-          <button value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
 
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white"
@@ -345,83 +346,10 @@
 
 
         </div>
-
-
-
-      <div class="col-md-4">
-          <div class="card card-primary">
-            <div class="card-header">
-              <h3 class="card-title">Costo del servicio</h3>
-
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                  <i class="fas fa-minus"></i></button>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="form-group">
-
-                <div class="card">
-                  <div class="card-header">
-                    <h3 class="card-title">Productos</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card-body p-0">
-                    <table id="tablaventa" class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th style="width: 10px">#</th>
-                          <th>Servicio</th>
-                          <th>Cantidad</th>
-                          <th style="width: 40px">Precio</th>
-                          <th>..</th>
-
-                        </tr>
-                      </thead>
-                      <tbody>
-
-                      </tbody>
-                    </table>
-                  </div>
-
-              </div>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <script src="https://code.jquery.com/jquery-2.0.3.js"></script>
-          <script type="text/javascript">
-
-$(document).ready(function(){
-    /**
-     * Funcion para añadir una nueva columna en la tabla
-     */
-     $("#botones button").click(function(){
-       var filas=$("#tablaventa").length;
-       var nuevaFila="<tr>";
-           nuevaFila+="<td>"+"#"+filas;+"</td>";
-           nuevaFila+="<td>"+$(this).attr('name')+"</td>";
-           nuevaFila+="<td><input type=\"text\" class=\"form-control\" id=\"cantidad_producto2\" name=\"cantidad_producto2\" placeholder=\" \" value=\"1\"step=\"0\" min=\"0\" max=50></td>"
-           nuevaFila+="<td>$"+$(this).val()+"</td>";
-           nuevaFila+="<td><a id=\"eliminar\"href=\"\"  data-toggle=\"modal\"><i class=\"fas fa-trash\"></i></a></td>"
-
-       nuevaFila+="</tr>";
-       $("#tablaventa").append(nuevaFila);
-
-   })
-
-   $("#tablaventa").on('click', '#eliminar', function () {
-     $(this).closest('tr').remove();
- });
-});
-
-
-</script>
-
-          <!-- Button -->
-          <!--Ojo.--El boton se encuentra dentro de la tabla-->
-          <input type="submit" value="Generar costo" class="btn btn-success float-right">
+        <div id="app" class="col-md-4">
+            <carrito>
+            </carrito>
         </div>
-      </div>
 
     </div>
 

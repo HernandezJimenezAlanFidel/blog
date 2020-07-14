@@ -15,6 +15,8 @@ use App\Models\Tarjeta;
 use App\Models\Producto;
 use App\Models\Users;
 use App\Models\UserRole;
+use App\Models\DetalleVenta;
+use App\Models\Venta;
 use App\Traits\UploadTrait;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -26,6 +28,28 @@ class AdministracionController extends Controller
     {
 
        return view("RegistroCliente");
+    }
+    public function registrarcompra(){
+        $idVenta=Venta::create([
+            'idcliente'=>'0',
+            'fecha_venta'=>date('Y-m-d'),
+            'idusuario'=>@auth()->user()->id,
+            'metodo_pago'=>request('metodo_pago'),
+            'total'=>request('total')
+        ])->idventa;
+
+        if(isset($idVenta)){
+            foreach(request('compra') as $key){
+                DetalleVenta::create([
+                    'idventa'=>$idVenta,
+                    'idproducto'=>$key['id'],
+                    'cantidad'=>$key['cantidad'],
+                    'monto'=>($key['cantidad']*$key['precio'])
+                ]);
+            }
+        }
+
+        return response()->json(['idVenta'=>$idVenta]);
     }
     public function crearcliente (Request $request)
   {
@@ -325,7 +349,15 @@ class AdministracionController extends Controller
     }
     public function impresion2()
     {
-      return view('Ticket');
+      $torneos=DB::table('detalle_venta as dv')
+      ->select('p.nombre as nombre','dv.cantidad','dv.monto')
+      ->join('producto as p','p.idproducto','=','dv.idproducto')
+      ->where('dv.idventa','=',request('id'))
+      ->get();
+      $totalIngresos=0;
+      foreach ($torneos as $venta)
+          $totalIngresos+=$venta->monto;
+      return view('Ticket',['producto'=>$torneos,'totalventa'=>$totalIngresos,'idVenta'=>request('id')]);
     }
 
 

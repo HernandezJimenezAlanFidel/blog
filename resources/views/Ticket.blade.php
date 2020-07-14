@@ -6,10 +6,13 @@
     <body>
         <div class="ticket">
             <!--<img src="{{asset('dist/img/logo2.png')}}"    alt="Logotipo">-->
-            <p class="centrado">Bldv, Guadalupe Hinojosa de Murat Km 3.5
+            <p class="centrado">Ruta 66
+              <br>Bldv, Guadalupe Hinojosa de Murat Km 3.5
                 <br>Santa Cruz Xoxocotlan
-                <br><?php echo date("d") . "/" . date("m") . "/" . date("Y") ."   ".date("G").":".date("i").":".date("s");?></p>
-            <table>
+                <br><?php echo date("d") . "/" . date("m") . "/" . date("Y") ."   ".date("G").":".date("i").":".date("s");?>
+                <br>#{{$idVenta}}</p>
+
+            <table style="text-align: center;">
                 <thead>
                     <tr>
                         <th class="cantidad">CANT</th>
@@ -18,30 +21,22 @@
                     </tr>
                 </thead>
                 <tbody>
+                  @foreach ($producto as $tor)
                     <tr>
-                        <td class="cantidad">1.00</td>
-                        <td class="producto">CHEETOS VERDES 80 G</td>
-                        <td class="precio">$8.50</td>
+                        <td class="cantidad">{{$tor->cantidad}}</td>
+                        <td class="producto">{{$tor->nombre}}</td>
+                        <td class="precio">${{$tor->monto}}</td>
                     </tr>
-                    <tr>
-                        <td class="cantidad">2.00</td>
-                        <td class="producto">KINDER DELICE</td>
-                        <td class="precio">$10.00</td>
-                    </tr>
-                    <tr>
-                        <td class="cantidad">1.00</td>
-                        <td class="producto">COCA COLA 600 ML</td>
-                        <td class="precio">$10.00</td>
-                    </tr>
-                    <tr>
-                        <td class="cantidad"></td>
-                        <td class="producto">TOTAL</td>
-                        <td class="precio">$28.50</td>
-                    </tr>
+                  @endforeach
+                  <tr>
+                      <td class="cantidad"></td>
+                      <td class="producto">Total</td>
+                      <td class="precio">${{$totalventa}}</td>
+                  </tr>
                 </tbody>
             </table>
             <p class="centrado">¡GRACIAS POR SU COMPRA!
-                <br>parzibyte.me</p>
+                <br>Ruta 66</p>
         </div>
     </body>
     <script>

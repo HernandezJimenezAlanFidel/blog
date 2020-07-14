@@ -20,6 +20,9 @@ Route::get('inicio2','InicioController@prueba');
 Route::get('indexcliente','AdministracionController@indexcliente');
 Route::post('crearcliente','AdministracionController@crearcliente');
 Route::get('registrocliente','AdministracionController@registrocliente');
+
+Route::post('registrarcompra','AdministracionController@registrarcompra');//->hecho por osmar cualquier problema se borra
+
 Route::get('editarcliente/{id}','AdministracionController@editcliente');
 Route::get('actualizarcliente/{id}','AdministracionController@actualizarcliente');
 Route::get('eliminarcliente/{id}','AdministracionController@eliminarcliente');

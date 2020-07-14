@@ -3,6 +3,10 @@
 
 <div class="content-wrapper" style="min-height: 1074px;">
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('plugins/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
+<script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
+
 
   <!--=========================RECARGAS=======================================0-->
   <div class="col-md-8">
@@ -17,7 +21,7 @@
       </div>
       <form role="form" method="GET" action="/crearreporte">
         @csrf
-      <div class="card-body">
+      <div id="app" class="card-body">
         <div class="form-group">
             <!-- /.card-header -->
             <div class="card-body p-0">
@@ -118,7 +122,7 @@
     //Date range picker
     $('#reservation').daterangepicker(
       {
-        startDate: moment().subtract('days', 7),
+        startDate: moment().subtract(7,'days'),
           endDate: moment(),
           maxDate: moment().endOf('day'),
 

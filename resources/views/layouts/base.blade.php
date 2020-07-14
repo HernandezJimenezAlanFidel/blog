@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
 
   <link rel="stylesheet" href="{{asset('dist/css/efecto.css')}}">
-  <script src="{{ asset('js/app.js') }}" defer></script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- Tell the browser to be responsive to screen width -->
