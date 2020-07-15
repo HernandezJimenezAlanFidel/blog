@@ -2004,12 +2004,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       selected_metodo_pago: 0,
+      respuesta: '',
       metodos_pago: [{
         code: 1,
         forma: 'Efectivo'
@@ -2033,6 +2032,9 @@ __webpack_require__.r(__webpack_exports__);
         var filas = 1;
         var pos = 0;
         var ide = $(this).attr('id');
+        var boton = $(this);
+        var div = boton.children()[2];
+        var stock = parseInt(div.children[0].children[0].children[0].children[2].textContent);
         total_a_pagar[0].tot = 0;
         var prod = 0;
 
@@ -2055,6 +2057,7 @@ __webpack_require__.r(__webpack_exports__);
               id: $(this).attr('name').split(' ').join('')
             },
             precio: parseFloat($(this).val()),
+            stock: stock,
             cantidad: 1
           });
 
@@ -2068,18 +2071,22 @@ __webpack_require__.r(__webpack_exports__);
       this.productos.splice(index, 1);
     },
     validacion: function validacion(index) {
-      var parseo = this.productos[index].cantidad * 3;
+      var parseo = this.productos[index].cantidad * 1;
 
       if (isNaN(parseo) || parseo < 1) {
         this.productos[index].cantidad = 1;
-      }
+      } else if (this.productos[index].stock >= parseo) {
+        var prod = 0;
+        this.total_a_pagar[0].tot = 0;
 
-      var prod = 0;
-      this.total_a_pagar[0].tot = 0;
-
-      for (prod = 0; prod < this.productos.length; prod++) {
-        var t = this.productos[prod].cantidad * this.productos[prod].precio;
-        this.total_a_pagar[0].tot += t;
+        for (prod = 0; prod < this.productos.length; prod++) {
+          var t = this.productos[prod].cantidad * this.productos[prod].precio;
+          this.total_a_pagar[0].tot += t;
+        }
+      } else {
+        this.productos[index].cantidad = this.productos[index].stock;
+        this.respuesta = '<div class="alert alert-danger" role="alert">¡' + 'Cantidad insuficiente en stock!</div>';
+        $('#respuesta').modal('show');
       }
     },
     formSubmit: function formSubmit(e) {
@@ -2093,16 +2100,20 @@ __webpack_require__.r(__webpack_exports__);
           metodo_pago: this.selected_metodo_pago,
           total: this.total_a_pagar[0].tot
         }).then(function (response) {
-          document.getElementById('formaPago').selectedIndex = 0;
-          _this.selected_metodo_pago = 0;
-          _this.total_a_pagar[0].tot = 0;
-          _this.productos = [];
-          $('#respuesta').modal('show');
+          if (response.data.error) {
+            _this.respuesta = '<div class="alert alert-danger" role="alert">¡' + response.data.mensaje + '!</div>';
+            $('#respuesta').modal('show');
+          } else {
+            document.getElementById('formaPago').selectedIndex = 0;
+            _this.selected_metodo_pago = 0;
+            _this.total_a_pagar[0].tot = 0;
+            _this.productos = [];
+            $('#respuesta').modal('show');
 
-          _this.createRow(_this.productos, _this.total_a_pagar);
+            _this.createRow(_this.productos, _this.total_a_pagar);
 
-          currentObj.output = response.data;
-          window.location.href = '/impresion2?id=' + response.data.idVenta;
+            window.location.href = '/impresion?id=' + response.data.idVenta;
+          }
         })["catch"](function (error) {
           currentObj.output = error;
         });
@@ -97027,19 +97038,44 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card card-primary" }, [
-    _vm._m(0),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "respuesta",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", {
+              staticClass: "modal-dialog",
+              attrs: { role: "document" },
+              domProps: { innerHTML: _vm._s(_vm.respuesta) }
+            })
+          ]
+        )
+      ]
+    ),
     _vm._v(" "),
     _c("input", {
       attrs: { type: "hidden", name: "_token" },
       domProps: { value: _vm.csrf }
     }),
     _vm._v(" "),
-    _vm._m(1),
+    _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
       _c("div", { staticClass: "form-group" }, [
         _c("div", { staticClass: "card" }, [
-          _vm._m(2),
+          _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "card-body p-0", attrs: { id: "app" } }, [
             _c(
@@ -97049,7 +97085,7 @@ var render = function() {
                 attrs: { id: "tablaventa", name: "tablon" }
               },
               [
-                _vm._m(3),
+                _vm._m(2),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -97146,7 +97182,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _vm._m(4),
+      _vm._m(3),
       _vm._v(" "),
       _c("div", { staticClass: "col-4 toast-header" }, [
         _c("span", { staticClass: "ml-3" }, [
@@ -97190,41 +97226,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "respuesta",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "exampleModalLabel",
-          "aria-hidden": "true"
-        }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "modal-dialog", attrs: { role: "document" } },
-          [
-            _c(
-              "div",
-              { staticClass: "alert alert-success", attrs: { role: "alert" } },
-              [
-                _vm._v(
-                  "\n                ¡Compra realizada exitosamente!\n            "
-                )
-              ]
-            )
-          ]
-        )
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -109615,8 +109616,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/blog/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/blog/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/example.com/vasquezveraosmarheriberto.github.io/laravel/blog/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/example.com/vasquezveraosmarheriberto.github.io/laravel/blog/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
