@@ -2,9 +2,7 @@
     <div class="card card-primary">
     <div class="modal fade" id="respuesta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-                <div class="alert alert-success" role="alert">
-                    ¡Compra realizada exitosamente!
-                </div>
+            <div class="modal-dialog" role="document" v-html="respuesta"></div>
         </div>
     </div>
     <input type="hidden" name="_token" :value="csrf">
@@ -77,6 +75,7 @@ export default {
     data: function() {
         return {
             selected_metodo_pago: 0,
+            respuesta:'',
             metodos_pago: [
                 {code:1, forma: 'Efectivo'},
                 {code:2, forma: 'Tarjeta de Credito'}
@@ -99,6 +98,11 @@ export default {
                     let filas=1;
                         let pos=0;
                         let ide=$(this).attr('id');
+                        let boton=$(this);
+                        let div=boton.children()[2];
+                        let stock= parseInt(div.children[0].children[0].children[0].children[2].textContent);
+
+
                         total_a_pagar[0].tot=0;
                         let prod = 0;
                         for (prod = 0; prod < productos.length; prod++) {
@@ -119,6 +123,7 @@ export default {
                                     id:($(this).attr('name').split(' ')).join('')
                                 },
                                 precio:parseFloat($(this).val()),
+                                stock:stock,
                                 cantidad:1
                             });
                             let t= productos[prod].cantidad*productos[prod].precio;
@@ -130,15 +135,22 @@ export default {
             this.productos.splice(index, 1);
         },
         validacion: function(index){
-            let parseo=this.productos[index].cantidad*3;
+            let parseo=this.productos[index].cantidad*1;
+
             if(isNaN(parseo) || parseo<1){
                 this.productos[index].cantidad=1;
-            }
-            let prod = 0;
-            this.total_a_pagar[0].tot=0;
-            for (prod = 0; prod < this.productos.length; prod++) {
-                let t= this.productos[prod].cantidad*this.productos[prod].precio;
-                this.total_a_pagar[0].tot+=t;
+            }else if(this.productos[index].stock>=parseo){
+                let prod = 0;
+                this.total_a_pagar[0].tot=0;
+                for (prod = 0; prod < this.productos.length; prod++) {
+                    let t= this.productos[prod].cantidad*this.productos[prod].precio;
+                    this.total_a_pagar[0].tot+=t;
+                }
+            }else{
+                this.productos[index].cantidad=this.productos[index].stock;
+                this.respuesta='<div class="alert alert-danger" role="alert">¡'+
+                                'Cantidad insuficiente en stock!</div>';
+                $('#respuesta').modal('show');
             }
         },
         formSubmit:function(e) {
@@ -153,14 +165,19 @@ export default {
 
                     })
                     .then((response)=> {
-                        document.getElementById('formaPago').selectedIndex=0;
-                        this.selected_metodo_pago =0;
-                        this.total_a_pagar[0].tot=0;
-                        this.productos=[];
-                        $('#respuesta').modal('show');
-                        this.createRow(this.productos,this.total_a_pagar);
-                        currentObj.output = response.data;
-                        window.location.href='/impresion?id='+response.data.idVenta;
+                        if(response.data.error){
+                            this.respuesta='<div class="alert alert-danger" role="alert">¡'+
+                            response.data.mensaje+'!</div>';
+                            $('#respuesta').modal('show');
+                        }else{
+                            document.getElementById('formaPago').selectedIndex=0;
+                            this.selected_metodo_pago =0;
+                            this.total_a_pagar[0].tot=0;
+                            this.productos=[];
+                            $('#respuesta').modal('show');
+                            this.createRow(this.productos,this.total_a_pagar);
+                            window.location.href='/impresion?id='+response.data.idVenta;
+                        }
 
                     })
                     .catch(function (error) {
