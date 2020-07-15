@@ -1,0 +1,8 @@
++ @angular/material@10.0.2
+added 2 packages from 1 contributor and audited 1602 packages in 17.313s
+
+59 packages are looking for funding
+  run `npm fund` for details
+
+found 90 vulnerabilities (42 low, 19 moderate, 27 high, 2 critical)
+  run `npm audit fix` to fix them, or `npm audit` for details
