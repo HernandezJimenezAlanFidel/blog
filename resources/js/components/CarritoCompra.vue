@@ -165,16 +165,6 @@ export default {
 
                     })
                     .then((response)=> {
-<<<<<<< HEAD
-                        document.getElementById('formaPago').selectedIndex=0;
-                        this.selected_metodo_pago =0;
-                        this.total_a_pagar[0].tot=0;
-                        this.productos=[];
-                        $('#respuesta').modal('show');
-                        this.createRow(this.productos,this.total_a_pagar);
-                        currentObj.output = response.data;
-                        window.location.href='/impresion2?id='+response.data.idVenta;
-=======
                         if(response.data.error){
                             this.respuesta='<div class="alert alert-danger" role="alert">¡'+
                             response.data.mensaje+'!</div>';
@@ -188,7 +178,6 @@ export default {
                             this.createRow(this.productos,this.total_a_pagar);
                             window.location.href='/impresion?id='+response.data.idVenta;
                         }
->>>>>>> 2be8833fc65eef7c3664d96cef682881f7179f18
 
                     })
                     .catch(function (error) {
