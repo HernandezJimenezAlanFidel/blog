@@ -40,12 +40,21 @@ class AdministracionController extends Controller
 
         if(isset($idVenta)){
             foreach(request('compra') as $key){
-                DetalleVenta::create([
-                    'idventa'=>$idVenta,
-                    'idproducto'=>$key['id'],
-                    'cantidad'=>$key['cantidad'],
-                    'monto'=>($key['cantidad']*$key['precio'])
-                ]);
+                $producto=Producto::where('idproducto',$key['id'])->select('cantidad');
+                $cantidad=(int)$producto->first()->cantidad;;
+                if($cantidad>=$key['stock']){
+                    DetalleVenta::create([
+                        'idventa'=>$idVenta,
+                        'idproducto'=>$key['id'],
+                        'cantidad'=>$key['cantidad'],
+                        'monto'=>($key['cantidad']*$key['precio'])
+                    ]);
+                    $cantidadActual = $cantidad - $key['cantidad'];
+                    Producto::where('idproducto',$key['id'])->update(['cantidad' => $cantidadActual]);
+                }else{
+                    return ['error'=>true,
+                            'mensaje'=>'Cantidad insuficiente en el stock de '.$key['nombre']];
+                }
             }
         }
 
