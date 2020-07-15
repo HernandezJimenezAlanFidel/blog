@@ -102,7 +102,6 @@ export default {
                         let div=boton.children()[2];
                         let stock= parseInt(div.children[0].children[0].children[0].children[2].textContent);
 
-
                         total_a_pagar[0].tot=0;
                         let prod = 0;
                         for (prod = 0; prod < productos.length; prod++) {
