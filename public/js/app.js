@@ -2112,7 +2112,7 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.createRow(_this.productos, _this.total_a_pagar);
 
-            window.location.href = '/impresion?id=' + response.data.idVenta;
+            window.location.href = '/impresionTicket?id=' + response.data.idVenta;
           }
         })["catch"](function (error) {
           currentObj.output = error;
