@@ -160,7 +160,7 @@ export default {
                         $('#respuesta').modal('show');
                         this.createRow(this.productos,this.total_a_pagar);
                         currentObj.output = response.data;
-                        window.location.href='/impresion2?id='+response.data.idVenta;
+                        window.location.href='/impresion?id='+response.data.idVenta;
 
                     })
                     .catch(function (error) {
