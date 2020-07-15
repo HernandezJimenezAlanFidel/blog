@@ -175,7 +175,7 @@ export default {
                             this.productos=[];
                             $('#respuesta').modal('show');
                             this.createRow(this.productos,this.total_a_pagar);
-                            window.location.href='/impresion?id='+response.data.idVenta;
+                            window.location.href='/impresionTicket?id='+response.data.idVenta;
                         }
 
                     })

@@ -42,7 +42,7 @@ class AdministracionController extends Controller
             foreach(request('compra') as $key){
                 $producto=Producto::where('idproducto',$key['id'])->select('cantidad');
                 $cantidad=(int)$producto->first()->cantidad;;
-                if($cantidad>=$key['stock']){
+                if($cantidad>=$key['cantidad']){
                     DetalleVenta::create([
                         'idventa'=>$idVenta,
                         'idproducto'=>$key['id'],
@@ -356,7 +356,7 @@ class AdministracionController extends Controller
 
 
     }
-    public function impresion2()
+    public function impresionTicket()
     {
       $torneos=DB::table('detalle_venta as dv')
       ->select('p.nombre as nombre','dv.cantidad','dv.monto')
