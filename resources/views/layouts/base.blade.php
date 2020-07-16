@@ -103,23 +103,20 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/" class="brand-link">
-      <img center src="{{asset('dist/img/LOGO2.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-10"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">.</span>
+    <a href="/" class="" style="height:80px" center>
+      <div align="center">
+      <img center src="{{asset('dist/img/LOGO2.png')}}" alt="Logo Ruta66" class=""
+           style="opacity: .8;
+           height:70px;
+           width:90px;
+           border-radius: 8px;
+           center center;" >
+         </div>
     </a>
-
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
-
-        </div>
-        <div class="info">
-          <a class="d-block">{{ Auth::user()->name }}</a>
-        </div>
       </div>
 
       <!-- Sidebar Menu -->
