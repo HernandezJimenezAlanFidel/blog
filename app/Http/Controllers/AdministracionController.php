@@ -24,11 +24,6 @@ use Illuminate\Support\Facades\Validator;
 class AdministracionController extends Controller
 {
     use UploadTrait;
-    public function registrocliente(Request $request)
-    {
-
-       return view("RegistroCliente");
-    }
     public function registrarcompra(){
         $idVenta=Venta::create([
             'idcliente'=>'0',
@@ -60,6 +55,23 @@ class AdministracionController extends Controller
 
         return response()->json(['idVenta'=>$idVenta]);
     }
+//metodos cliente
+
+
+    public function indexcliente(Request $request)
+    {
+        $torneos=DB::table('cliente as c')
+        ->select('c.idcliente','c.nombre','c.direccion','c.telefono','c.sexo')
+        ->where('c.activo','=','1');
+        $torneos=$torneos->get();
+        return view('cliente-inicio',["clientes"=>$torneos]);
+
+    }
+    public function registrocliente(Request $request)
+      {
+
+          return view("RegistroCliente");
+        }
     public function crearcliente (Request $request)
   {
       $cliente= new Cliente;
@@ -102,7 +114,8 @@ class AdministracionController extends Controller
     public function indexproducto(Request $request)
     {
         $torneos=DB::table('producto as c')
-        ->select('c.idproducto','c.nombre','c.cantidad','c.precio','c.categoria');
+        ->select('c.idproducto','c.nombre','c.cantidad','c.precio','c.categoria')
+        ->where('c.activo','=','1');
         $torneos=$torneos->get();
         return view('categoria-inicio',["producto"=>$torneos]);
 
@@ -120,11 +133,40 @@ class AdministracionController extends Controller
       $producto->cantidad=$request->get('cantidad_producto');
       $producto->precio=$request->get('precio_producto');
       $producto->categoria=$request->get('categoria_producto');
-      $producto->save();
+      if ($request->hasFile('imagen')) {
+        // Get image file
+                $image = $request->file('imagen');
+                // Make a image name based on user name and current timestamp
+                $name = Str::slug($request->input('nombre_producto')).'_'.time();
+
+                // Define folder path
+                $folder = '/uploads/images/';
+                // Make a file path where image will be stored [ folder path + file name + file extension]
+                $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
+                // Upload image
+                $this->uploadOne($image, $folder, 'public', $name);
+                // Set user profile image path in database to filePath
+                $producto->imagen = $filePath;
+            }
+            if ($request->hasFile('imagenfondo')) {
+              // Get image file
+                      $image = $request->file('imagenfondo');
+                      // Make a image name based on user name and current timestamp
+                      $name = Str::slug($request->input('nombre_producto')).'fondo_'.time();
+
+                      // Define folder path
+                      $folder = '/uploads/images/';
+                      // Make a file path where image will be stored [ folder path + file name + file extension]
+                      $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
+                      // Upload image
+                      $this->uploadOne($image, $folder, 'public', $name);
+                      // Set user profile image path in database to filePath
+                      $producto->imagen_fondo = $filePath;
+                  }
+                  $producto->activo=1;
+                  $producto->save();
 
 
-  //  $imageName = time().'.'.request()->imagen->getClientOriginalExtension();
-    //request()->imagen->move(public_path('images'), $imageName);
 
       return Redirect::to('/indexproducto');
   }
@@ -159,28 +201,36 @@ class AdministracionController extends Controller
                // Set user profile image path in database to filePath
                $producto->imagen = $filePath;
            }
-           $producto->save();
+           if ($request->hasFile('imagenfondo')) {
+             // Get image file
+                     $image = $request->file('imagenfondo');
+                     // Make a image name based on user name and current timestamp
+                     $name = Str::slug($request->input('nombre_producto')).'fondo_'.time();
+
+                     // Define folder path
+                     $folder = '/uploads/images/';
+                     $this->deleteOne($folder,'public',$producto->imagen_fondo );
+                     // Make a file path where image will be stored [ folder path + file name + file extension]
+                     $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
+                     // Upload image
+                     $this->uploadOne($image, $folder, 'public', $name);
+                     // Set user profile image path in database to filePath
+                     $producto->imagen_fondo = $filePath;
+                 }
+                 $producto->save();
     return Redirect::to('/indexproducto');
 }
 
   public function eliminarproducto(Request $request,$id)
   {
-    DB::table('producto')->where('idproducto', '=', $id)->delete();
+    $producto=Producto::where('idproducto',$id)->take(1)->first();
+    $producto->activo=0;
+    $producto->save();
     return Redirect::to('/indexproducto');
   }
 
 
-
-
-    public function indexcliente(Request $request)
-    {
-        $torneos=DB::table('cliente as c')
-        ->select('c.idcliente','c.nombre','c.direccion','c.telefono','c.sexo')
-        ->where('c.activo','=','1');
-        $torneos=$torneos->get();
-        return view('cliente-inicio',["clientes"=>$torneos]);
-
-    }
+//Membresia
     public function indexmembresia(Request $request)
     {
         $torneos=DB::table('cliente as c')
@@ -192,6 +242,17 @@ class AdministracionController extends Controller
         return view('membresia-inicio',["clientes"=>$torneos]);
 
     }
+
+    public function actualizarmembresia(Request $request)
+    {
+        $torneos=DB::table('cliente as c')
+        ->where('c.activo','=','1');
+
+        $torneos=$torneos->get();
+        return view('membresia-inicio',["clientes"=>$torneos]);
+
+    }
+
     public function eliminartarjeta(Request $request,$id){
       $tarjeta=Tarjeta::where('idtarjeta',$id)->take(1)->first();
       $tarjeta->activo=0;
@@ -209,9 +270,20 @@ class AdministracionController extends Controller
         $torneos=DB::table('users as u')
         ->join('role_user as ru','u.id','=','ru.user_id')
         ->join('roles as r','ru.role_id','=','r.id')
-        ->select('u.id as idempleado','u.name as nombre','r.description as tipo','u.email');
+        ->select('u.id as idempleado','u.name as nombre','r.description as tipo','u.email','r.id as role','u.activo');
         $torneos=$torneos->get();
         return view('trabajador-inicio',["empleado"=>$torneos]);
+
+    }
+    public function edittrabajador(Request $request,$id)
+    {
+        $torneos=DB::table('users as u')
+        ->join('role_user as ru','u.id','=','ru.user_id')
+        ->join('roles as r','ru.role_id','=','r.id')
+        ->select('u.id','u.name as nombre','u.password','r.id as role','u.email')
+        ->where('u.id','=',$id)->take(1)->first();
+
+        return view('ActualizarTrabajador',["empleado"=>$torneos]);
 
     }
     public function registrotrabajador(Request $request)
@@ -239,6 +311,7 @@ class AdministracionController extends Controller
       $users->name=$request->get('name');
       $users->email=$request->get('email');
       $users->password=Hash::make($request->get('password'));
+      $users->activo=1;
       $users->save();
 
       $UserRole= new UserRole;
@@ -252,7 +325,49 @@ class AdministracionController extends Controller
 
       return Redirect::to('/indextrabajador');
     }
+    public function actualizartrabajador(Request $request,$id)
+    {
+      $reglas=[
+          'name' => ['required', 'string', 'max:255'],
+          'email' => ['required', 'string', 'email', 'max:255'],
+          'password' => ['required', 'string', 'min:8'],
+      ];
+      $datos=['name'=>$request->get('name'),
+              'email'=>$request->get('email'),
+              'password'=>$request->get('password'),];
 
+      $validator=Validator::make($datos,$reglas);
+      if ( $validator->fails() ) {
+        return Redirect::to('/editartrabajador/'.$id)
+          ->withErrors($validator);
+    }
+      $users= Users::where('id','=',$id)->take(1)->first();
+      $users->name=$request->get('name');
+      $users->email=$request->get('email');
+      $users->password=Hash::make($request->get('password'));
+      $users->save();
+
+      $UserRole= UserRole::where('user_id','=',$id)->take(1)->first();;
+      $torneos=DB::table('roles as r')
+      ->select('r.id')
+      ->where('r.name','=',$request->get('tipo'))
+      ->take(1)->first();
+      $UserRole->role_id=$torneos->id;
+      $UserRole->save();
+
+      return Redirect::to('/indextrabajador');
+    }
+    public function eliminarempleado(Request $request,$id)
+    {
+        $torneos=DB::table('users as u')
+        ->where('u.id','=',$id)
+        ->update(array('activo'=>0,'email'=>""));
+
+        return Redirect::to('/indextrabajador');
+
+    }
+
+    //corte
     public function corte(Request $request)
     {$totalIngresos=0;
       if($request->get('tipocorte')=="0")
@@ -333,29 +448,6 @@ class AdministracionController extends Controller
 
     }
 
-
-
-    //impresion termica
-    public function impresion()
-    {
-      $nombreImpresora = "POS-58";
-      $connector = new WindowsPrintConnector($nombreImpresora);
-      $impresora = new Printer($connector);
-      $impresora->setJustification(Printer::JUSTIFY_CENTER);
-      $impresora->setTextSize(2, 2);
-      $impresora->text("Imprimiendo\n");
-      $impresora->text("ticket\n");
-      $impresora->text("desde\n");
-      $impresora->text("Laravel\n");
-      $impresora->setTextSize(1, 1);
-      $impresora->text("https://parzibyte.me");
-      $impresora->feed(5);
-      $impresora->close();
-
-      return Redirect::to('/');
-
-
-    }
     public function impresionTicket()
     {
       $torneos=DB::table('detalle_venta as dv')
@@ -367,6 +459,11 @@ class AdministracionController extends Controller
       foreach ($torneos as $venta)
           $totalIngresos+=$venta->monto;
       return view('Ticket',['producto'=>$torneos,'totalventa'=>$totalIngresos,'idVenta'=>request('id')]);
+    }
+    public function impresionResponsiva()
+    {
+
+      return view('Ticketresponsiva');
     }
 
 

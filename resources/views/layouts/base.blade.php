@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
 
   <title>GOKAart----</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -138,8 +138,19 @@
                 </p>
               </a>
             </li>
-            <!--Prueba de Recargas-->
             <li class="nav-item">
+              <a href="/impresionResponsiva" class="nav-link">
+                <i class="nav-icon fas fa-file-medical-alt"></i>
+                <p>
+                  Responsiva
+                  <span class="badge badge-info right"></span>
+                </p>
+              </a>
+            </li>
+            </li>
+@if(Auth::user()->hasRole('admin')==1||Auth::user()->hasRole('gerente')==1)
+            <!--Prueba de Recargas-->
+            <!--<li class="nav-item">
               <a href="/recargas" class="nav-link">
                 <i class="nav-icon fas fa-credit-card"></i>
                 <p>
@@ -148,7 +159,7 @@
                 </p>
               </a>
             </li>
-            </li>
+          </li>-->
 
             <!--fin de Recargas-->
 
@@ -156,6 +167,7 @@
           <!--Ventas-->
 
           <!--FIN Ventas-->
+
 
 
           <li class="nav-header">FINANZAS</li>
@@ -190,7 +202,7 @@
               </p>
             </a>
           </li>
-
+          <!--
           <li class="nav-item">
             <a href="/indexmembresia" class="nav-link">
             <i class="nav-icon fas fa-address-card"></i>
@@ -200,7 +212,8 @@
               </p>
             </a>
           </li>
-
+        -->
+          @if(Auth::user()->hasRole('admin')==1)
           <li class="nav-item">
             <a href="/indextrabajador" class="nav-link">
             <i class="nav-icon fas fa-chalkboard-teacher"></i>
@@ -210,7 +223,8 @@
               </p>
             </a>
           </li>
-
+          @endif
+@endif
           <!--MISCELANEA REVISAR-->
 
         </ul>
@@ -319,6 +333,6 @@
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-
+<script src="../../dist/js/pages/dashboard3.js"></script>
 </body>
 </html>

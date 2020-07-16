@@ -34,10 +34,10 @@
         <!-- Widget: user widget style 1 -->
 
         <div class="card card-widget widget-user">
-          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}">
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="fondo">
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white"
-               style="background: url('dist/img/photo1.png')center center;" id="fondo">
+               style="background: url('{{asset($tor->imagen_fondo)}}')center center;" >
           </div>
         <div class="widget-user-image">
           <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar" id="imagen">
@@ -74,11 +74,11 @@
 <div class="col-md-3">
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user">
-          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
 
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white"
-               style="background: url('dist/img/photo1.png') center center;"id="fondo2">
+               style="background: url('{{asset($tor->imagen_fondo)}}') center center;"id="fondo2">
           </div>
         <div class="widget-user-image">
           <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
@@ -113,11 +113,11 @@
 <div class="col-md-3">
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user">
-          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
 
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white"
-               style="background: url('dist/img/photo1.png') center center;"id="fondo2">
+               style="background: url('{{asset($tor->imagen_fondo)}}') center center;"id="fondo2">
           </div>
         <div class="widget-user-image">
           <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
@@ -152,11 +152,11 @@
 <div class="col-md-3">
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user">
-          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
 
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white"
-               style="background: url('dist/img/photo1.png') center center;"id="fondo2">
+               style="background: url('{{asset($tor->imagen_fondo)}}') center center;"id="fondo2">
           </div>
         <div class="widget-user-image">
           <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
@@ -190,11 +190,11 @@
 <div class="col-md-3">
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user">
-          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
 
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white"
-               style="background: url('dist/img/photo1.png') center center;"id="fondo2">
+               style="background: url('{{asset($tor->imagen_fondo)}}') center center;"id="fondo2">
           </div>
         <div class="widget-user-image">
           <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
@@ -229,11 +229,11 @@
 <div class="col-md-3">
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user">
-          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
 
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white"
-               style="background: url('dist/img/photo1.png') center center;"id="fondo2">
+               style="background: url('{{asset($tor->imagen_fondo)}}') center center;"id="fondo2">
           </div>
         <div class="widget-user-image">
           <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
@@ -268,11 +268,11 @@
 <div class="col-md-3">
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user">
-          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
 
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="widget-user-header text-white"
-               style="background: url('dist/img/photo1.png') center center;"id="fondo2">
+               style="background: url('{{asset($tor->imagen_fondo)}}') center center;"id="fondo2">
           </div>
         <div class="widget-user-image">
           <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">

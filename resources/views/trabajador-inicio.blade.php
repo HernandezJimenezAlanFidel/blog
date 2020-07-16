@@ -26,17 +26,20 @@
             </thead>
               <tbody>
                 @foreach ($empleado as $tor)
+                @if($tor->activo==1)
                 <tr>
                 <td>{{ $tor->idempleado}}</td>
                 <td>{{ $tor->nombre}}</td>
                 <td>{{ $tor->tipo}}</td>
                 <td>{{ $tor->email}}</td>
                 <td>
-                  <a href="/editarempleado/{{$tor->idempleado}}"><i class="fa fa-edit"></i></a>
+                  <a href="/editartrabajador/{{$tor->idempleado}}"><i class="fa fa-edit"></i></a>
                   <a href=""data-target="#modal-delete-{{$tor->idempleado}}" data-toggle="modal"><i class="fas fa-trash"></i></a>
                 </td>
                 </tr>
+
                 @include('Modals.ModalEmpleado')
+                @endif
                 @endforeach
               </tbody>
           </table>

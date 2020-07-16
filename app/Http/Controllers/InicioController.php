@@ -22,14 +22,10 @@ class InicioController extends Controller
 
        if($request->user()!=null)
        {  $torneos=DB::table('producto as c')
-       ->select('c.idproducto','c.nombre','c.cantidad','c.precio','c.categoria','c.imagen');
+       ->select('c.idproducto','c.nombre','c.cantidad','c.precio','c.categoria','c.imagen','c.imagen_fondo')
+       ->where('c.activo','=','1');
        $torneos=$torneos->get();
-         if($request->user()->hasRole('admin'))
-              return view('index',["producto"=>$torneos]);
-              else {
-                if($request->user()->hasRole('vendedor'))
-                  return view('indexvendedor',["producto"=>$torneos]);
-              }
+         return view('index',["producto"=>$torneos]);
       }
       else
        return Redirect::to('/login');

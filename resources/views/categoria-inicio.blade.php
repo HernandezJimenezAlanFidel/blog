@@ -39,7 +39,7 @@
                 @elseif ($tor->categoria == 3)
                 <td>Cocteles</td>
                 @elseif ($tor->categoria == 4)
-                <td>Coctles sin alcohol</td>
+                <td>Cocteles sin alcohol</td>
                 @elseif ($tor->categoria == 5)
                 <td>Copeo</td>
                 @elseif ($tor->categoria == 6)
