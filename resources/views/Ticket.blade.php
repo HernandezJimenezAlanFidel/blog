@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class="ticket">
-            <img src="{{asset('dist/img/logo2.png')}}"    alt="Logotipo">
+            <img src="{{asset('dist/img/logo2.png')}}" alt="Logotipo">
             <p class="centrado">Ruta 66
               <br>Bldv, Guadalupe Hinojosa de Murat Km 3.5
                 <br>Santa Cruz Xoxocotlan
@@ -44,8 +44,8 @@
     </body>
     <script>
     window.onload = function() {
-      window.print();
-      window.location.href = "/";
+    //  window.print();
+      //window.location.href = "/";
 };
 
 
