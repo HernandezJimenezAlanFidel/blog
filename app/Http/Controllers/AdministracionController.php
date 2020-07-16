@@ -375,8 +375,9 @@ class AdministracionController extends Controller
 
          if($request->get('categoria')=="0")
           {
-            error_log('entrada1');
-            $torneos=DB::table('venta')
+            $torneos=DB::table('venta as v')
+            ->join('users as u','v.idusuario','=','u.id')
+            ->select('v.idventa as idventa','u.name as idusuario','v.total','v.fecha_venta as fecha_venta','v.metodo_pago as metodo_pago')
             ->where('fecha_venta','=',$fecha)
             ->get();
 
@@ -390,11 +391,11 @@ class AdministracionController extends Controller
             //return view('corte',["venta"=>$torneos,"fecha"=>$fecha]);
           }
           else {
-            error_log('entrada2');
             $torneos=DB::table('venta as v')
+            ->join('users as u','v.idusuario','=','u.id')
             ->join('detalle_venta as dv','dv.idventa','=','v.idventa')
             ->join('producto as p','p.idproducto','=','dv.idproducto')
-            ->select('v.idventa as idventa','v.idusuario','p.nombre as nombreproducto','dv.cantidad as cantidadventa'
+            ->select('v.idventa as idventa','u.name as idusuario','p.nombre as nombreproducto','dv.cantidad as cantidadventa'
                       ,'dv.monto as montoventa','v.fecha_venta as fecha_venta','v.fecha_venta','v.metodo_pago as metodopago')
             ->where('p.categoria','=',$request->get('categoria'))
             ->where('fecha_venta','=',$fecha)
@@ -416,7 +417,9 @@ class AdministracionController extends Controller
       $fechafinal=date("Y-m-d", strtotime($split[1]));
           if($request->get('categoria')=="0")
             {
-              $torneos=DB::table('venta')
+              $torneos=DB::table('venta as v')
+              ->join('users as u','v.idusuario','=','u.id')
+              ->select('v.idventa as idventa','u.name as idusuario','v.total','v.fecha_venta as fecha_venta','v.metodo_pago as metodo_pago')
               ->whereBetween('fecha_venta',[$fechainicio,$fechafinal])
               ->get();
               foreach ($torneos as $venta)
@@ -429,10 +432,11 @@ class AdministracionController extends Controller
          else
           {
             $torneos=DB::table('venta as v')
+            ->join('users as u','v.idusuario','=','u.id')
             ->join('detalle_venta as dv','dv.idventa','=','v.idventa')
             ->join('producto as p','p.idproducto','=','dv.idproducto')
-            ->select('v.idventa as idventa','v.idusuario','p.nombre as nombreproducto','dv.cantidad as cantidadventa'
-                      ,'dv.monto as montoventa','v.fecha_venta as fecha_venta','v.metodo_pago as metodopago')
+            ->select('v.idventa as idventa','u.name as idusuario','p.nombre as nombreproducto','dv.cantidad as cantidadventa'
+                      ,'dv.monto as montoventa','v.fecha_venta as fecha_venta','v.fecha_venta','v.metodo_pago as metodopago')
             ->where('p.categoria','=',$request->get('categoria'))
             ->whereBetween('fecha_venta',[$fechainicio,$fechafinal])
             ->get();
