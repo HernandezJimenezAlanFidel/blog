@@ -44,8 +44,8 @@
     </body>
     <script>
     window.onload = function() {
-    //  window.print();
-      //window.location.href = "/";
+      window.print();
+      window.location.href = "/";
 };
 
 
