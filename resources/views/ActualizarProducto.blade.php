@@ -129,6 +129,19 @@ $(document).ready(function () {
                 </div>
               </div>
             </div>
+            <div class="form-group">
+              <label for="exampleInputFile">Imagen Fondo Actual</label>
+              <br>
+               <img src="{{$producto->imagen_fondo}}" alt="alternatetext" id="imagenactualizar">
+               <br>
+               <label for="exampleInputFile">Buscar Imagen Fondo</label>
+              <div class="input-group">
+                <div class="custom-file">
+                  <input type="file" accept="image/*" name="imagenfondo" class="custom-file-input" id="imagenfondo">
+                  <label class="custom-file-label" for="imagenfondo">Buscar archivo</label>
+                </div>
+              </div>
+            </div>
           </div>
           <!-- /.card-body -->
 

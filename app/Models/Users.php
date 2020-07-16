@@ -16,6 +16,7 @@ class Users extends Model
 	'id',
   'name',
   'email',
-  'password'
+  'password',
+	'activo'
     ];
 }

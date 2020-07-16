@@ -36,10 +36,13 @@ Route::get('base','InicioController@base');
 
 Route::get('indexmembresia','AdministracionController@indexmembresia');
 
-
+//trabajador
 Route::get('indextrabajador','AdministracionController@indextrabajador');
 Route::get('registrotrabajador','AdministracionController@registrotrabajador');
 Route::post('creartrabajador','AdministracionController@creartrabajador');
+Route::get('editartrabajador/{id}','AdministracionController@edittrabajador');
+Route::get('actualizartrabajador/{id}','AdministracionController@actualizartrabajador');
+Route::get('eliminarempleado/{id}','AdministracionController@eliminarempleado');
 //cliente
 Route::get('indexproducto','AdministracionController@indexproducto');
 Route::post('crearproducto','AdministracionController@crearproducto');
@@ -58,4 +61,5 @@ Route::get('crearreporte','AdministracionController@corte');
 Auth::routes();
 //Route::get('impresion','AdministracionController@impresion');
 Route::get('impresionTicket','AdministracionController@impresionTicket');
+Route::get('impresionResponsiva','AdministracionController@impresionResponsiva');
 Route::get('/home', 'HomeController@index')->name('home');

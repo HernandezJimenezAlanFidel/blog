@@ -13,32 +13,15 @@
               <br>Bldv, Guadalupe Hinojosa de Murat Km 3.5
                 <br>Santa Cruz Xoxocotlan
                 <br><?php echo date("d") . "/" . date("m") . "/" . date("Y") ."   ".date("G").":".date("i").":".date("s");?>
-                <br>#{{$idVenta}}</p>
+                <br></p>
+                <p class="centrado" style="text-align: center;">Ruta 66
+                  Responsiva
+                  A traves de la presente, hago constar que el C._____________________  responsable,
+                   está enterado del riesgo que conlleva el uso inadecuado de nuestras atracciones de igual
+                   manera se compromete a cumplir con el reglamento de nuestras instalaciones y deslindó de
+                   toda responsabilidad a RUTA 66 FOODTRUCK</p>
 
-            <table style="text-align: center;">
-                <thead>
-                    <tr>
-                        <th class="cantidad">CANT</th>
-                        <th class="producto">PRODUCTO</th>
-                        <th class="precio">$$</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  @foreach ($producto as $tor)
-                    <tr>
-                        <td class="cantidad">{{$tor->cantidad}}</td>
-                        <td class="producto">{{$tor->nombre}}</td>
-                        <td class="precio">${{$tor->monto}}</td>
-                    </tr>
-                  @endforeach
-                  <tr>
-                      <td class="cantidad"></td>
-                      <td class="producto">Total</td>
-                      <td class="precio">${{$totalventa}}</td>
-                  </tr>
-                </tbody>
-            </table>
-            <p class="centrado">¡GRACIAS POR SU COMPRA!
+            <p class="centrado">¡GRACIAS POR SU PREFERENCIA!
                 <br>Ruta 66</p>
         </div>
     </body>

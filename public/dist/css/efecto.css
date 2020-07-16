@@ -5,9 +5,11 @@
   overflow: hidden;
 }
 #fondo2{
-  width: 150px;
+  width: 140px;
   height: 150px;
-  background: #CCC;
+  background: black;
+  background-position: center center;
+  background-size: cover;
   overflow: hidden;
 }
 #boton{
