@@ -8,7 +8,6 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Clientes Ruta 66</h3>
-
         </div>
 
         <!-- /.card-header -->

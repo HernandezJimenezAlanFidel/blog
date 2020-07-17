@@ -45,6 +45,7 @@ Route::get('actualizartrabajador/{id}','AdministracionController@actualizartraba
 Route::get('eliminarempleado/{id}','AdministracionController@eliminarempleado');
 //cliente
 Route::get('indexproducto','AdministracionController@indexproducto');
+Route::get('ventas','AdministracionController@ventas');
 Route::post('crearproducto','AdministracionController@crearproducto');
 Route::get('registroproducto','AdministracionController@registroproducto');
 Route::get('editarproducto/{id}','AdministracionController@editproducto');

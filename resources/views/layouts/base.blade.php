@@ -199,6 +199,18 @@
               </p>
             </a>
           </li>
+
+          <!--  -->
+          <li class="nav-item">
+            <a href="/ventas" class="nav-link">
+            <i class="nav-icon fas fa-comments-dollar"></i>
+              <p>
+                Ventas
+                <span class="badge badge-info right"></span>
+              </p>
+            </a>
+          </li>
+
           <!--
           <li class="nav-item">
             <a href="/indexmembresia" class="nav-link">
