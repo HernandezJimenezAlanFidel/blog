@@ -120,6 +120,25 @@ class AdministracionController extends Controller
         return view('categoria-inicio',["producto"=>$torneos]);
 
     }
+
+    public function ventas(Request $request)
+    {
+        $productos=[];
+        $torneos=DB::table('venta as v')
+        ->select('v.idventa','v.fecha_venta','v.metodo_pago','v.total');
+        $listado=$torneos->orderBy('v.fecha_venta','desc')->get();
+        foreach ($listado as $idVenta) {
+            $products=DB::table('detalle_venta as d_v')->join('producto as p','d_v.idproducto','=','p.idproducto')
+                                ->select('p.nombre','p.precio','d_v.cantidad','d_v.monto')
+                                ->where('d_v.idventa','=',$idVenta->idventa);
+            $productosVenta=$products->get();
+            array_push($productos,$productosVenta);
+        }
+        $ventas=$torneos->get();
+        return view('ventas-inicio',["ventas"=>$ventas,"productos"=>$productos]);
+
+    }
+
     public function registroproducto(Request $request)
     {
 
