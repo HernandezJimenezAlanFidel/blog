@@ -15,8 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','InicioController@index');
 Route::get('inicio','InicioController@index');
-Route::get('inicio2','InicioController@prueba');
-
 Route::get('indexcliente','AdministracionController@indexcliente');
 Route::post('crearcliente','AdministracionController@crearcliente');
 Route::get('registrocliente','AdministracionController@registrocliente');

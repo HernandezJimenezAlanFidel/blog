@@ -5,10 +5,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+        <link rel="stylesheet" href="{{asset('dist/css/efecto2.css')}}">
     </head>
     <body>
         <div class="ticket">
-            <img src="{{asset('/dist/img/LOGO2.png')}}" alt="Logotipo">
+        <img src="{{asset('/dist/img/Logoimpresion.jpeg')}}" alt="Logotipo">
             <p class="centrado">Ruta 66
               <br>Bldv, Guadalupe Hinojosa de Murat Km 3.5
                 <br>Santa Cruz Xoxocotlan
@@ -20,17 +21,17 @@
                     <tr>
                         <th class="cantidad">CANT</th>
                         <th class="producto">PRODUCTO</th>
-                        <th class="precio">$$</th>
+                        <th class="precio">Costo</th>
                     </tr>
                 </thead>
                 <tbody>
-                  @foreach ($producto as $tor)
+
                     <tr>
-                        <td class="cantidad">{{$tor->cantidad}}</td>
-                        <td class="producto">{{$tor->nombre}}</td>
-                        <td class="precio">${{$tor->monto}}</td>
+                        <td class="cantidad">2</td>
+                        <td class="producto"><p>oajsjbkajbskjbasjbajbsjksbajbskjabskskjbk</p></td>
+                        <td class="precio">$100</td>
                     </tr>
-                  @endforeach
+
                   <tr>
                       <td class="cantidad"></td>
                       <td class="producto">Total</td>

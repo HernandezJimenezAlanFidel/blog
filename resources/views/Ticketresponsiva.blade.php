@@ -8,12 +8,12 @@
     </head>
     <body>
         <div class="ticket">
-            <img src="{{asset('/dist/img/LOGO2.png')}}"    alt="Logotipo">
+            <img src="{{asset('/dist/img/Logoimpresion.jpeg')}}"    alt="Logotipo">
             <p class="centrado">Ruta 66
-              <br>Bldv, Guadalupe Hinojosa de Murat Km 3.5
-                <br>Santa Cruz Xoxocotlan
-                <br><?php echo date("d") . "/" . date("m") . "/" . date("Y") ."   ".date("G").":".date("i").":".date("s");?>
-                <br></p>
+              Bldv, Guadalupe Hinojosa de Murat Km 3.5
+                Santa Cruz Xoxocotlan
+                <?php echo date("d") . "/" . date("m") . "/" . date("Y") ."   ".date("G").":".date("i").":".date("s");?>
+                </p>
                 <p class="centrado" style="text-align: center;">Ruta 66
                   Responsiva
                   A traves de la presente, hago constar que el C._____________________  responsable,
