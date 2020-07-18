@@ -14,7 +14,7 @@
           <div class="card-header d-flex p-0">
             <ul class="nav nav-pills ml-auto p-1">
               <li class="nav-item"><a class="nav-link active" href="#atraccion" data-toggle="tab"><i class="fas fa-th"></i> Atracción</a></li>
-              <li class="nav-item"><a class="nav-link" href="#alimento" data-toggle="tab"><i class="fas fa-hamburger"> </i> Alimento</a></li>
+              <li class="nav-item"><a class="nav-link" href="#alimento" data-toggle="tab"><i class="fas fa-hamburger"> </i> Combos</a></li>
               <li class="nav-item"><a class="nav-link" href="#cocteles" data-toggle="tab"><i class="fas fa-cocktail"> </i>Cocteles</a></li>
               <li class="nav-item"><a class="nav-link" href="#coctelessin" data-toggle="tab"><i class="fas fa-glass-martini-alt"> </i>Cocteles sin alcohol</a></li>
               <li class="nav-item"><a class="nav-link" href="#copeo" data-toggle="tab"><i class="fas fa-glass-whiskey"> </i>Copeo</a></li>
