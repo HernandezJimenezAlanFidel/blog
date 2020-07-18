@@ -25,13 +25,13 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                  @foreach ($producto as $tor)
                     <tr>
-                        <td class="cantidad">2</td>
-                        <td class="producto"><p>oajsjbkajbskjbasjbajbsjksbajbskjabskskjbk</p></td>
-                        <td class="precio">$100</td>
+                        <td class="cantidad">{{$tor->cantidad}}</td>
+                        <td class="producto"><p>{{$tor->nombre}}</p></td>
+                        <td class="precio">${{$tor->monto}}</td>
                     </tr>
-
+                  @endforeach
                   <tr>
                       <td class="cantidad"></td>
                       <td class="producto">Total</td>
