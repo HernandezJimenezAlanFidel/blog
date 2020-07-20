@@ -2,8 +2,7 @@
 @section ('contenido')
 
 <!--=======================CATEGORIAS===========================-->
-
-<script src="{{ asset('js/app.js') }}" defer></script>
+ript src="{{ asset('js/app.js') }}" defer></script>
   <div class="contenedor">
     <div class="row">
       <div class="col-md-8" >
