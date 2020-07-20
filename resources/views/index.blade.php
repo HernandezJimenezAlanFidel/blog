@@ -4,7 +4,7 @@
 <!--=======================CATEGORIAS===========================-->
 
 <script src="{{ asset('js/app.js') }}" defer></script>
-  <div class="contenedor">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-md-8" >
     <div class="row">
@@ -27,37 +27,38 @@
           <div class="card-body">
             <div class="tab-content">
               <div class="tab-pane active" id="atraccion">
-               <div class="row" >
+               <div class="row" id="botones">
 @foreach ($producto as $tor)
 @if($tor->categoria==2)
-<div class="col-md-4 thumbex">
+<div class="col-md-4">
         <!-- Widget: user widget style 1 -->
-        <div class="card card-widget widget-user botonesResponsivos">
-            <button id="{{ $tor->idproducto }}"  value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
-            <!-- Add the bg color to the header using any of the bg-* classes -->
 
-            <div class="imagenPrincipal"
-            style="--imgFondo: url('{{asset($tor->imagen_fondo)}}');">
-            </div>
-
-            <div class="widget-user-image">
-                <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
-            </div>
-
-            <div class="card-footer p-0 m-4 contenidoCard">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="description-block contenidoTexto">
-                            <h1 class="text-sm">{{$tor->nombre}}</h1>
-                            <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
-                            <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
-                        </div>
-                        <!-- /.description-block -->
-                    </div>
-                </div>
-            <!-- /.row -->
-            </div>
+        <div class="card card-widget widget-user">
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="fondo">
+          <!-- Add the bg color to the header using any of the bg-* classes -->
+          <div class="widget-user-header text-white"
+               style="background: url('{{asset($tor->imagen_fondo)}}')center center;" >
+          </div>
+        <div class="widget-user-image">
+          <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar" id="imagen">
         </div>
+          <div class="card-footer p-0 m-4">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="description-block">
+                  <span class="text-sm">{{$tor->nombre}}</span>
+                  <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
+
+                  <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+            </div>
+            <!-- /.row -->
+          </div>
+        </button>
+        </div>
+
         <!-- /.widget-user -->
 </div>
 @endif
@@ -70,35 +71,33 @@
 
 @foreach ($producto as $tor)
 @if($tor->categoria==1)
-    <div class="col-md-3 thumbex">
+<div class="col-md-3">
         <!-- Widget: user widget style 1 -->
-        <div class="card card-widget widget-user botonesResponsivos">
-            <button id="{{ $tor->idproducto }}"  value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
-            <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class="card card-widget widget-user">
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
 
-            <div class="imagenPrincipal"
-            style="--imgFondo: url('{{asset($tor->imagen_fondo)}}');">
-            </div>
-
-            <div class="widget-user-image">
-                <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
-            </div>
-
-            <div class="card-footer p-0 m-4 contenidoCard">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="description-block contenidoTexto">
-                            <h1 class="text-sm">{{$tor->nombre}}</h1>
-                            <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
-                            <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
-                        </div>
-                        <!-- /.description-block -->
-                    </div>
-                </div>
-            <!-- /.row -->
-            </div>
+          <!-- Add the bg color to the header using any of the bg-* classes -->
+          <div class="widget-user-header text-white"
+               style="background: url('{{asset($tor->imagen_fondo)}}') center center;"id="fondo2">
+          </div>
+        <div class="widget-user-image">
+          <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
         </div>
-    </div>
+          <div class="card-footer p-0 m-4">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="description-block">
+                  <h1 class="text-sm">{{$tor->nombre}}</h1>
+                  <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
+                  <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+            </div>
+            <!-- /.row -->
+          </div>
+        </div>
+        </div>
         <!-- /.widget-user -->
 @endif
       @endforeach
@@ -111,35 +110,33 @@
 
 @foreach ($producto as $tor)
 @if($tor->categoria==3)
-<div class="col-md-3 thumbex">
+<div class="col-md-3">
         <!-- Widget: user widget style 1 -->
-        <div class="card card-widget widget-user botonesResponsivos">
-            <button id="{{ $tor->idproducto }}"  value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
-            <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class="card card-widget widget-user">
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
 
-            <div class="imagenPrincipal"
-            style="--imgFondo: url('{{asset($tor->imagen_fondo)}}');">
-            </div>
-
-            <div class="widget-user-image">
-                <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
-            </div>
-
-            <div class="card-footer p-0 m-4 contenidoCard">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="description-block contenidoTexto">
-                            <h1 class="text-sm">{{$tor->nombre}}</h1>
-                            <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
-                            <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
-                        </div>
-                        <!-- /.description-block -->
-                    </div>
-                </div>
-            <!-- /.row -->
-            </div>
+          <!-- Add the bg color to the header using any of the bg-* classes -->
+          <div class="widget-user-header text-white"
+               style="background: url('{{asset($tor->imagen_fondo)}}') center center;"id="fondo2">
+          </div>
+        <div class="widget-user-image">
+          <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
         </div>
-</div>
+          <div class="card-footer p-0 m-4">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="description-block">
+                  <h1 class="text-sm">{{$tor->nombre}}</h1>
+                  <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
+                  <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+            </div>
+            <!-- /.row -->
+          </div>
+        </div>
+        </div>
         <!-- /.widget-user -->
 @endif
       @endforeach
@@ -152,34 +149,33 @@
 
 @foreach ($producto as $tor)
 @if($tor->categoria==4)
-<div class="col-md-3 thumbex">
-    <div class="card card-widget widget-user botonesResponsivos">
-        <button id="{{ $tor->idproducto }}"  value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
-        <!-- Add the bg color to the header using any of the bg-* classes -->
+<div class="col-md-3">
+        <!-- Widget: user widget style 1 -->
+        <div class="card card-widget widget-user">
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
 
-        <div class="imagenPrincipal"
-        style="--imgFondo: url('{{asset($tor->imagen_fondo)}}');">
-        </div>
-
+          <!-- Add the bg color to the header using any of the bg-* classes -->
+          <div class="widget-user-header text-white"
+               style="background: url('{{asset($tor->imagen_fondo)}}') center center;"id="fondo2">
+          </div>
         <div class="widget-user-image">
-            <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
+          <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
         </div>
-
-        <div class="card-footer p-0 m-4 contenidoCard">
+          <div class="card-footer p-0 m-4">
             <div class="row">
-                <div class="col-sm-12">
-                    <div class="description-block contenidoTexto">
-                        <h1 class="text-sm">{{$tor->nombre}}</h1>
-                        <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
-                        <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
-                    </div>
-                    <!-- /.description-block -->
+              <div class="col-sm-12">
+                <div class="description-block">
+                  <h1 class="text-sm">{{$tor->nombre}}</h1>
+                  <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
+                  <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
                 </div>
+                <!-- /.description-block -->
+              </div>
             </div>
-        <!-- /.row -->
+            <!-- /.row -->
+          </div>
         </div>
-    </div>
-</div>
+        </div>
         <!-- /.widget-user -->
 @endif
       @endforeach
@@ -191,35 +187,33 @@
 
 @foreach ($producto as $tor)
 @if($tor->categoria==5)
-<div class="col-md-3 thumbex">
+<div class="col-md-3">
         <!-- Widget: user widget style 1 -->
-        <div class="card card-widget widget-user botonesResponsivos">
-            <button id="{{ $tor->idproducto }}"  value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
-            <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class="card card-widget widget-user">
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
 
-            <div class="imagenPrincipal"
-            style="--imgFondo: url('{{asset($tor->imagen_fondo)}}');">
-            </div>
-
-            <div class="widget-user-image">
-                <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
-            </div>
-
-            <div class="card-footer p-0 m-4 contenidoCard">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="description-block contenidoTexto">
-                            <h1 class="text-sm">{{$tor->nombre}}</h1>
-                            <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
-                            <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
-                        </div>
-                        <!-- /.description-block -->
-                    </div>
-                </div>
-            <!-- /.row -->
-            </div>
+          <!-- Add the bg color to the header using any of the bg-* classes -->
+          <div class="widget-user-header text-white"
+               style="background: url('{{asset($tor->imagen_fondo)}}') center center;"id="fondo2">
+          </div>
+        <div class="widget-user-image">
+          <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
         </div>
-</div>
+          <div class="card-footer p-0 m-4">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="description-block">
+                  <h1 class="text-sm">{{$tor->nombre}}</h1>
+                  <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
+                  <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+            </div>
+            <!-- /.row -->
+          </div>
+        </div>
+        </div>
         <!-- /.widget-user -->
 @endif
       @endforeach
@@ -232,35 +226,33 @@
 
 @foreach ($producto as $tor)
 @if($tor->categoria==6)
-<div class="col-md-3 thumbex">
+<div class="col-md-3">
         <!-- Widget: user widget style 1 -->
-        <div class="card card-widget widget-user botonesResponsivos">
-            <button id="{{ $tor->idproducto }}"  value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
-            <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class="card card-widget widget-user">
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
 
-            <div class="imagenPrincipal"
-            style="--imgFondo: url('{{asset($tor->imagen_fondo)}}');">
-            </div>
-
-            <div class="widget-user-image">
-                <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
-            </div>
-
-            <div class="card-footer p-0 m-4 contenidoCard">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="description-block contenidoTexto">
-                            <h1 class="text-sm">{{$tor->nombre}}</h1>
-                            <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
-                            <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
-                        </div>
-                        <!-- /.description-block -->
-                    </div>
-                </div>
-            <!-- /.row -->
-            </div>
+          <!-- Add the bg color to the header using any of the bg-* classes -->
+          <div class="widget-user-header text-white"
+               style="background: url('{{asset($tor->imagen_fondo)}}') center center;"id="fondo2">
+          </div>
+        <div class="widget-user-image">
+          <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
         </div>
-    </div>
+          <div class="card-footer p-0 m-4">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="description-block">
+                  <h1 class="text-sm">{{$tor->nombre}}</h1>
+                  <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
+                  <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+            </div>
+            <!-- /.row -->
+          </div>
+        </div>
+        </div>
         <!-- /.widget-user -->
 @endif
       @endforeach
@@ -273,35 +265,33 @@
 
 @foreach ($producto as $tor)
 @if($tor->categoria==7)
-<div class="col-md-3 thumbex">
+<div class="col-md-3">
         <!-- Widget: user widget style 1 -->
-        <div class="card card-widget widget-user botonesResponsivos">
-            <button id="{{ $tor->idproducto }}"  value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
-            <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class="card card-widget widget-user">
+          <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
 
-            <div class="imagenPrincipal"
-            style="--imgFondo: url('{{asset($tor->imagen_fondo)}}');">
-            </div>
-
-            <div class="widget-user-image">
-                <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
-            </div>
-
-            <div class="card-footer p-0 m-4 contenidoCard">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="description-block contenidoTexto">
-                            <h1 class="text-sm">{{$tor->nombre}}</h1>
-                            <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
-                            <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
-                        </div>
-                        <!-- /.description-block -->
-                    </div>
-                </div>
-            <!-- /.row -->
-            </div>
+          <!-- Add the bg color to the header using any of the bg-* classes -->
+          <div class="widget-user-header text-white"
+               style="background: url('{{asset($tor->imagen_fondo)}}') center center;"id="fondo2">
+          </div>
+        <div class="widget-user-image">
+          <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
         </div>
-</div>
+          <div class="card-footer p-0 m-4">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="description-block">
+                  <h1 class="text-sm">{{$tor->nombre}}</h1>
+                  <h5 class="description-header description-text">${{$tor->precio}}.00</h5>
+                  <span class="badge bg-purple"><i class="fas fa-plus-circle"> {{$tor->cantidad}}</i></span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+            </div>
+            <!-- /.row -->
+          </div>
+        </div>
+        </div>
         <!-- /.widget-user -->
 @endif
       @endforeach
