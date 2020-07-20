@@ -1,4 +1,5 @@
 <template>
+
     <div class="card card-primary">
     <div class="modal fade" id="respuesta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
