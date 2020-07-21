@@ -137,6 +137,22 @@ table {
                       </tbody>
                   </table>
               </div>
+							<div class="box-footer clearfix">
+                  <div class="col-md-12">
+                      <label for="" name="totalIngresos">Total efectivo : $
+													{{$totalefectivo}}</label>
+                              <br><br>
+
+                  </div>
+              </div>
+							<div class="box-footer clearfix">
+                  <div class="col-md-12">
+                      <label for="" name="totalIngresos">Total tarjeta : $
+													{{$totaltarjeta}}</label>
+                              <br><br>
+
+                  </div>
+              </div>
               <div class="box-footer clearfix">
                   <div class="col-md-12">
                       <label for="" name="totalIngresos">Total de ventas : $

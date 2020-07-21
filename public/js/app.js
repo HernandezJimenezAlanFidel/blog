@@ -109599,24 +109599,31 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ //"./resources/sass/btns.scss":
+/***/ "./resources/sass/btns.scss":
 /*!**********************************!*\
   !*** ./resources/sass/btns.scss ***!
   \**********************************/
 /*! no static exports found */
+/***/ (function(module, exports) {
 
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 0:
 /*!**************************************************************!*\
   !*** multi ./resources/js/app.js ./resources/sass/btns.scss ***!
   \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/*! /var/www/example.com/vasquezveraosmarheriberto.github.io/laravel/blog/resources/js/app.js */
-__webpack_require__("./resources/js/app.js");
-/*! /var/www/example.com/vasquezveraosmarheriberto.github.io/laravel/blog/resources/sass/btns.scss */
-module.exports = __webpack_require__("./resources/sass/btns.scss");
 
->>>>>>> 61516be8d5bdd9865db7137e8c40935ddb9c72db
+//__webpack_require__(/*! /var/www/blog/resources/js/app.js */"./resources/js/app.js");
+//module.exports = __webpack_require__(/*! /var/www/blog/resources/sass/app.scss */"./resources/sass/app.scss");
+
+__webpack_require__(/*! /var/www/example.com/vasquezveraosmarheriberto.github.io/laravel/blog/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/example.com/vasquezveraosmarheriberto.github.io/laravel/blog/resources/sass/btns.scss */"./resources/sass/btns.scss");
+
 
 
 /***/ })

@@ -389,6 +389,8 @@ class AdministracionController extends Controller
     //corte
     public function corte(Request $request)
     {$totalIngresos=0;
+      $totalefectivo=0;
+      $totaltarjeta=0;
       if($request->get('tipocorte')=="0")
       { $fecha=$request->get('fecha');
 
@@ -403,8 +405,16 @@ class AdministracionController extends Controller
             foreach ($torneos as $venta)
                 $totalIngresos+=$venta->total;
 
+                foreach ($torneos as $venta)
+                if($venta->metodo_pago==1)
+                    $totalefectivo+=$venta->total;
 
-            $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos];
+                    foreach ($torneos as $venta)
+                    if($venta->metodo_pago==2)
+                        $totaltarjeta+=$venta->total;
+
+
+            $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta];
             return PDF::loadView('corte', $data)->stream('corte.pdf');
 
             //return view('corte',["venta"=>$torneos,"fecha"=>$fecha]);
