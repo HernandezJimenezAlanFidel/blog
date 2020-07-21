@@ -109616,10 +109616,12 @@ __webpack_require__.r(__webpack_exports__);
   \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
+
 /*! /var/www/example.com/vasquezveraosmarheriberto.github.io/laravel/blog/resources/js/app.js */
 __webpack_require__("./resources/js/app.js");
 /*! /var/www/example.com/vasquezveraosmarheriberto.github.io/laravel/blog/resources/sass/btns.scss */
 module.exports = __webpack_require__("./resources/sass/btns.scss");
+
 
 
 /***/ })
