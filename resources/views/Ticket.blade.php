@@ -67,21 +67,21 @@ table {
 
 td.producto,
 th.producto {
-    width: 75px;
-    max-width: 75px;
+    width: 90px;
+    max-width: 90px;
 }
 
 td.cantidad,
 th.cantidad {
-    width: 40px;
-    max-width: 40px;
+    width: 55px;
+    max-width: 55px;
     word-break: break-all;
 }
 
 td.precio,
 th.precio {
-    width: 40px;
-    max-width: 40px;
+    width: 55px;
+    max-width: 55px;
     word-break: break-all;
 }
 
@@ -91,8 +91,8 @@ th.precio {
 }
 
 .ticket {
-    width: 155px;
-    max-width: 155px;
+    width: 200px;
+    max-width: 200px;
 }
 
 img {

@@ -119,7 +119,7 @@ $(document).ready(function () {
             <div class="form-group">
               <label for="exampleInputFile">Imagen Actual</label>
               <br>
-               <img src="{{$producto->imagen}}" alt="alternatetext" id="imagenactualizar">
+               <img src="{{$producto->imagen}}" alt="alternatetext" id="imagen">
                <br>
                <label for="exampleInputFile">Buscar Imagen</label>
               <div class="input-group">
@@ -132,7 +132,7 @@ $(document).ready(function () {
             <div class="form-group">
               <label for="exampleInputFile">Imagen Fondo Actual</label>
               <br>
-               <img src="{{$producto->imagen_fondo}}" alt="alternatetext" id="imagenactualizar">
+               <img src="{{$producto->imagen_fondo}}" alt="alternatetext" id="imagen">
                <br>
                <label for="exampleInputFile">Buscar Imagen Fondo</label>
               <div class="input-group">
