@@ -137,7 +137,14 @@
 </script>
 <script>
 $( document ).ready(function() {
-  $('#rango').hide();
+
+
+    var variable = $("#tipocorte").val();
+    if(variable=="0")
+    $('#rango').hide();
+    else {
+      $('#dia').hide(); //muestro mediante id
+    }
 
 });
 function Cambio() {

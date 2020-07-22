@@ -433,8 +433,16 @@ class AdministracionController extends Controller
             foreach ($torneos as $venta)
                 $totalIngresos+=$venta->montoventa;
 
+                foreach ($torneos as $venta)
+                if($venta->metodopago==1)
+                    $totalefectivo+=$venta->montoventa;
 
-            $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos];
+                    foreach ($torneos as $venta)
+                    if($venta->metodopago==2)
+                        $totaltarjeta+=$venta->montoventa;
+
+
+            $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta];
             return PDF::loadView('cortecategoria', $data)->stream('corte.pdf');
             }
     }
@@ -454,8 +462,16 @@ class AdministracionController extends Controller
               foreach ($torneos as $venta)
                   $totalIngresos+=$venta->total;
 
+                  foreach ($torneos as $venta)
+                  if($venta->metodo_pago==1)
+                      $totalefectivo+=$venta->total;
 
-              $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos];
+                      foreach ($torneos as $venta)
+                      if($venta->metodo_pago==2)
+                          $totaltarjeta+=$venta->total;
+
+
+              $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta];
               return PDF::loadView('corte', $data)->stream('corte.pdf');
             }
          else
@@ -473,8 +489,16 @@ class AdministracionController extends Controller
             foreach ($torneos as $venta)
                 $totalIngresos+=$venta->montoventa;
 
+                foreach ($torneos as $venta)
+                if($venta->metodopago==1)
+                    $totalefectivo+=$venta->montoventa;
 
-            $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos];
+                    foreach ($torneos as $venta)
+                    if($venta->metodopago==2)
+                        $totaltarjeta+=$venta->montoventa;
+
+
+            $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta];
             return PDF::loadView('cortecategoria', $data)->stream('corte.pdf');
         }
     }
