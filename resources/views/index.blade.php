@@ -42,11 +42,11 @@
                style="--imgFondo: url('{{asset($tor->imagen_fondo)}}');">
             </div>
 
-            <div class="widget-user-image">
+            <div class="widget-user-image  mb-5">
                 <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
             </div>
 
-            <div class="card-footer p-0 m-4 contenidoCard">
+            <div class="card-footer p-0 m-4 contenidoCard mt-5">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="description-block">
@@ -77,14 +77,14 @@
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user botonesResponsivos">
 
-            <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+            <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}"/>
 
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="imagenPrincipal"
                style="--imgFondo: url('{{asset($tor->imagen_fondo)}}');">
             </div>
 
-            <div class="widget-user-image mb-5">
+            <div class="widget-user-image  mb-5">
                 <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
             </div>
 
@@ -126,11 +126,11 @@
                style="--imgFondo: url('{{asset($tor->imagen_fondo)}}');">
             </div>
 
-            <div class="widget-user-image">
+            <div class="widget-user-image  mb-5">
                 <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
             </div>
 
-            <div class="card-footer p-0 m-4 contenidoCard">
+            <div class="card-footer p-0 m-4 contenidoCard mt-5">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="description-block">
@@ -168,11 +168,11 @@
                style="--imgFondo: url('{{asset($tor->imagen_fondo)}}');">
             </div>
 
-            <div class="widget-user-image">
+            <div class="widget-user-image  mb-5">
                 <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
             </div>
 
-            <div class="card-footer p-0 m-4 contenidoCard">
+            <div class="card-footer p-0 m-4 contenidoCard mt-5">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="description-block">
@@ -209,11 +209,11 @@
                style="--imgFondo: url('{{asset($tor->imagen_fondo)}}');">
             </div>
 
-            <div class="widget-user-image">
+            <div class="widget-user-image  mb-5">
                 <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
             </div>
 
-            <div class="card-footer p-0 m-4 contenidoCard">
+            <div class="card-footer p-0 m-4 contenidoCard mt-5">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="description-block">
@@ -251,11 +251,11 @@
                style="--imgFondo: url('{{asset($tor->imagen_fondo)}}');">
             </div>
 
-            <div class="widget-user-image">
+            <div class="widget-user-image  mb-5">
                 <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
             </div>
 
-            <div class="card-footer p-0 m-4 contenidoCard">
+            <div class="card-footer p-0 m-4 contenidoCard mt-5">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="description-block">
@@ -293,11 +293,11 @@
                style="--imgFondo: url('{{asset($tor->imagen_fondo)}}');">
             </div>
 
-            <div class="widget-user-image">
+            <div class="widget-user-image  mb-5">
                 <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
             </div>
 
-            <div class="card-footer p-0 m-4 contenidoCard">
+            <div class="card-footer p-0 m-4 contenidoCard mt-5">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="description-block">
