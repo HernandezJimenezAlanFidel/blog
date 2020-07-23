@@ -38,7 +38,7 @@
                 background-image: var(--imgFondo);
                 position: absolute;
                 left: 50%;
-                top: 55%;
+                top: 50%;
                 width: 100%;
                 height: 300px;
                 transform: translate(-50%, -50%);
@@ -49,6 +49,7 @@
             }
 
             .contenidoCard{
+                border-radius: 5px;
                 position: absolute;
                 top: calc(150px - 20px);
                 left: 0;

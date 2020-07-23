@@ -104,8 +104,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="" style="height:80px" center>
-      <div align="center">
-      <img center src="{{asset('dist/img/LOGO2.png')}}" alt="Logo Ruta66" class=""
+      <div class="mt-4" align="center">
+      <img center src="{{asset('dist/img/LOGO2.png')}}" alt="Logo Ruta66" class="img-fluid"
            style="opacity: .8;
            height:70px;
            width:90px;

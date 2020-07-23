@@ -84,11 +84,11 @@
                style="--imgFondo: url('{{asset($tor->imagen_fondo)}}');">
             </div>
 
-            <div class="widget-user-image">
+            <div class="widget-user-image mb-5">
                 <img class="img-circle" src="{{asset($tor->imagen)}}" alt="User Avatar"id="imagen">
             </div>
 
-            <div class="card-footer p-0 m-4 contenidoCard">
+            <div class="card-footer p-0 m-4 contenidoCard mt-5">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="description-block">
