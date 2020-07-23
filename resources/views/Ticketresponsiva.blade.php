@@ -19,7 +19,11 @@
                   A traves de la presente, hago constar que el C._____________________  responsable,
                    está enterado del riesgo que conlleva el uso inadecuado de nuestras atracciones de igual
                    manera se compromete a cumplir con el reglamento de nuestras instalaciones y deslindó de
-                   toda responsabilidad a RUTA 66 FOODTRUCK</p>
+                   toda responsabilidad a RUTA 66 FOODTRUCK
+                 <br><br>
+                Enterado<br><br>
+              _________________________</p>
+
 
             <p class="centrado">¡GRACIAS POR SU PREFERENCIA!
                 <br>Ruta 66</p>
