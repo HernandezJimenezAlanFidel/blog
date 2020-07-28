@@ -26,6 +26,7 @@ Route::get('actualizarcliente/{id}','AdministracionController@actualizarcliente'
 Route::get('eliminarcliente/{id}','AdministracionController@eliminarcliente');
 
 Route::get('eliminartarjeta/{id}','AdministracionController@eliminartarjeta');
+Route::get('eliminarventa/{id}','AdministracionController@eliminarventa');
 
 Route::get('categorias','InicioController@categorias');
 Route::get('cortecaja','InicioController@cortecaja');

@@ -2005,10 +2005,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       selected_metodo_pago: 0,
+      nombreCliente: "",
+      red: 'border-color:red',
+      green: 'border-color:green',
       respuesta: '',
       metodos_pago: [{
         code: 1,
@@ -2021,19 +2031,24 @@ __webpack_require__.r(__webpack_exports__);
       total_a_pagar: [{
         tot: 0
       }],
-      productos: []
+      productos: [],
+      acciones: {
+        status: false,
+        cant: 0
+      }
     };
   },
   methods: {
     changeMetodo: function changeMetodo(event) {
       this.selected_metodo_pago = event.target.options[event.target.options.selectedIndex].value;
     },
-    createRow: function createRow(productos, total_a_pagar) {
+    createRow: function createRow(productos, total_a_pagar, acciones) {
       $("#botones button").click(function () {
         var filas = 1;
         var pos = 0;
         var ide = $(this).attr('id');
         var boton = $(this);
+        var padreDiv = document.getElementById(ide).parentNode.parentNode.parentNode.parentNode;
         var div = boton.children()[2];
         var stock = parseInt(div.children[0].children[0].children[0].children[2].textContent);
         total_a_pagar[0].tot = 0;
@@ -2050,6 +2065,11 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         if (pos == 0) {
+          if (padreDiv.id == "atraccion") {
+            acciones.status = true;
+            acciones.cant += 1;
+          }
+
           productos.push({
             id: $(this).attr('id'),
             numero: "#" + filas,
@@ -2059,7 +2079,8 @@ __webpack_require__.r(__webpack_exports__);
             },
             precio: parseFloat($(this).val()),
             stock: stock,
-            cantidad: 1
+            cantidad: 1,
+            categoria: padreDiv.id
           });
 
           var _t = productos[prod].cantidad * productos[prod].precio;
@@ -2069,6 +2090,16 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     eliminarNota: function eliminarNota(index) {
+      if (this.productos[index].categoria === "atraccion") {
+        if (this.acciones.status == true) {
+          this.acciones.cant -= 1;
+
+          if (this.acciones.cant == 0) {
+            this.acciones.status = false;
+          }
+        }
+      }
+
       this.productos.splice(index, 1);
     },
     validacion: function validacion(index) {
@@ -2090,39 +2121,56 @@ __webpack_require__.r(__webpack_exports__);
         $('#respuesta').modal('show');
       }
     },
-    formSubmit: function formSubmit(e) {
+    envioDatos: function envioDatos(e) {
       var _this = this;
 
+      e.preventDefault();
+      var currentObj = this;
+      axios.post('/registrarcompra', {
+        compra: this.productos,
+        metodo_pago: this.selected_metodo_pago,
+        total: this.total_a_pagar[0].tot,
+        nombreCliente: this.nombreCliente
+      }).then(function (response) {
+        if (response.data.error) {
+          _this.respuesta = '<div class="alert alert-danger" role="alert">¡' + response.data.mensaje + '!</div>';
+          $('#respuesta').modal('show');
+        } else {
+          document.getElementById('formaPago').selectedIndex = 0;
+          _this.selected_metodo_pago = 0;
+          _this.total_a_pagar[0].tot = 0;
+          _this.productos = [];
+          _this.acciones.status = false;
+          _this.acciones.cant = 0;
+          _this.nombreCliente = "";
+          _this.respuesta = '<div class="alert alert-success" role="alert">¡' + +'Exito!</div>';
+          $('#respuesta').modal('show');
+
+          _this.createRow(_this.productos, _this.total_a_pagar, _this.acciones);
+
+          window.location.href = '/impresionTicket?id=' + response.data.idVenta;
+        }
+      })["catch"](function (error) {
+        currentObj.output = error;
+      });
+    },
+    formSubmit: function formSubmit(e) {
       if (this.productos.length > 0 && this.selected_metodo_pago != 0 && this.total_a_pagar[0].tot > 0) {
-        e.preventDefault();
-        var currentObj = this;
-        axios.post('/registrarcompra', {
-          compra: this.productos,
-          metodo_pago: this.selected_metodo_pago,
-          total: this.total_a_pagar[0].tot
-        }).then(function (response) {
-          if (response.data.error) {
-            _this.respuesta = '<div class="alert alert-danger" role="alert">¡' + response.data.mensaje + '!</div>';
-            $('#respuesta').modal('show');
+        if (this.acciones.status == true) {
+          if (this.nombreCliente.length > 0) {
+            this.envioDatos(e);
           } else {
-            document.getElementById('formaPago').selectedIndex = 0;
-            _this.selected_metodo_pago = 0;
-            _this.total_a_pagar[0].tot = 0;
-            _this.productos = [];
+            this.respuesta = '<div class="alert alert-danger" role="alert">¡Capture nombre del cliente!</div>';
             $('#respuesta').modal('show');
-
-            _this.createRow(_this.productos, _this.total_a_pagar);
-
-            window.location.href = '/impresionTicket?id=' + response.data.idVenta;
           }
-        })["catch"](function (error) {
-          currentObj.output = error;
-        });
+        } else {
+          this.envioDatos(e);
+        }
       }
     }
   },
   mounted: function mounted() {
-    this.createRow(this.productos, this.total_a_pagar);
+    this.createRow(this.productos, this.total_a_pagar, this.acciones);
   }
 });
 
@@ -97074,6 +97122,49 @@ var render = function() {
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
+      _vm.acciones.status == true
+        ? _c("div", { staticClass: "mb-4" }, [
+            _c("label", { attrs: { for: "NameClient" } }, [
+              _vm._v("Nombre del cliente")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.nombreCliente,
+                  expression: "nombreCliente"
+                }
+              ],
+              staticClass: "form-control",
+              style: _vm.nombreCliente.length < 1 ? _vm.red : _vm.green,
+              attrs: {
+                type: "text",
+                id: "NameClient",
+                placeholder: "Nombre cliente"
+              },
+              domProps: { value: _vm.nombreCliente },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.nombreCliente = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.nombreCliente.length < 1
+              ? _c("span", { staticClass: "badge badge-danger badge-pill" }, [
+                  _vm._v(
+                    "\n                    Rellene el nombre del cliente\n                "
+                  )
+                ])
+              : _vm._e()
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
         _c("div", { staticClass: "card" }, [
           _vm._m(1),

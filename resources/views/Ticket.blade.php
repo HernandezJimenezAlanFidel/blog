@@ -11,7 +11,10 @@
         <div class="ticket">
         <img src="{{asset('/dist/img/Logoimpresion.jpeg')}}" alt="Logotipo">
             <p class="centrado">Ruta 66
-              <br>Bldv, Guadalupe Hinojosa de Murat Km 3.5
+                @isset($producto[0]->NombreCliente)
+                    <br> Compra Realizada por: {{ $producto[0]->NombreCliente  }}
+                @endisset
+                <br>Bldv, Guadalupe Hinojosa de Murat Km 3.5
                 <br>Santa Cruz Xoxocotlan
                 <br><?php echo date("d") . "/" . date("m") . "/" . date("Y") ."   ".date("G").":".date("i").":".date("s");?>
                 <br>#{{$idVenta}}</p>

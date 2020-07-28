@@ -35,7 +35,7 @@
 
         <div class="card card-widget widget-user botonesResponsivos">
 
-            <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+            <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}"  />
 
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="imagenPrincipal"
@@ -119,7 +119,7 @@
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user botonesResponsivos">
 
-            <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+            <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" />
 
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="imagenPrincipal"
@@ -161,7 +161,7 @@
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user botonesResponsivos">
 
-            <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+            <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" />
 
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="imagenPrincipal"
@@ -202,7 +202,7 @@
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user botonesResponsivos">
 
-            <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+            <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" />
 
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="imagenPrincipal"
@@ -244,7 +244,7 @@
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user botonesResponsivos">
 
-            <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+            <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" />
 
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="imagenPrincipal"
@@ -286,7 +286,7 @@
         <!-- Widget: user widget style 1 -->
         <div class="card card-widget widget-user botonesResponsivos">
 
-            <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" id="boton"/>
+            <button id="{{ $tor->idproducto }}" value="{{$tor->precio}}" name="{{$tor->nombre}}" />
 
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="imagenPrincipal"

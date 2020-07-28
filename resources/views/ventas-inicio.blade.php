@@ -57,8 +57,10 @@
             <td>$ {{ $ventas[$venta]->total}}</td>
             <td>
               <a href="/impresionTicket?id={{ $ventas[$venta]->idventa }}"><i class="fas fa-print"></i></a>
+              <a href=""data-target="#modal-delete-{{$ventas[$venta]->idventa}}" data-toggle="modal"><i class="fas fa-trash"></i></a>
             </td>
             </tr>
+            @include('Modals.ModalVenta')
             @endfor
 
           </tbody>

@@ -16,6 +16,8 @@ class Venta extends Model
         'fecha_venta',
         'idusuario',
         'metodo_pago',
-        'total'
+        'total',
+        'nombreComprador',
+        'activo'
     ];
 }

@@ -30,7 +30,9 @@ class AdministracionController extends Controller
             'fecha_venta'=>date('Y-m-d'),
             'idusuario'=>@auth()->user()->id,
             'metodo_pago'=>request('metodo_pago'),
-            'total'=>request('total')
+            'total'=>request('total'),
+            'nombreComprador'=>request('nombreCliente'),
+            'activo'=>1
         ])->idventa;
 
         if(isset($idVenta)){
@@ -54,6 +56,14 @@ class AdministracionController extends Controller
         }
 
         return response()->json(['idVenta'=>$idVenta]);
+    }
+
+    public function eliminarventa(Request $request,$id)
+    {
+      $venta=Venta::where('idventa',$id)->take(1)->first();
+      $venta->activo=0;
+      $venta->save();
+      return Redirect::to('ventas');
     }
 //metodos cliente
 
@@ -125,7 +135,8 @@ class AdministracionController extends Controller
     {
         $productos=[];
         $torneos=DB::table('venta as v')
-        ->select('v.idventa','v.fecha_venta','v.metodo_pago','v.total');
+        ->select('v.idventa','v.fecha_venta','v.metodo_pago','v.total')
+        ->where('v.activo','=','1');
         $listado=$torneos->orderBy('v.fecha_venta','desc')->get();
         foreach ($listado as $idVenta) {
             $products=DB::table('detalle_venta as d_v')->join('producto as p','d_v.idproducto','=','p.idproducto')
@@ -508,8 +519,9 @@ class AdministracionController extends Controller
     public function impresionTicket()
     {
       $torneos=DB::table('detalle_venta as dv')
-      ->select('p.nombre as nombre','dv.cantidad','dv.monto')
+      ->select('v.nombreComprador as NombreCliente','p.nombre as nombre','dv.cantidad','dv.monto')
       ->join('producto as p','p.idproducto','=','dv.idproducto')
+      ->join('venta as v','v.idventa','=','dv.idventa')
       ->where('dv.idventa','=',request('id'))
       ->get();
       $totalIngresos=0;
