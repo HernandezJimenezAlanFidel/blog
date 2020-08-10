@@ -27,7 +27,7 @@ class AdministracionController extends Controller
     public function registrarcompra(){
         $idVenta=Venta::create([
             'idcliente'=>'0',
-            'fecha_venta'=>date('Y-m-d'),
+            'fecha_venta'=>date('Y-m-d H:i:s'),
             'idusuario'=>@auth()->user()->id,
             'metodo_pago'=>request('metodo_pago'),
             'total'=>request('total'),
