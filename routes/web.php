@@ -61,5 +61,6 @@ Route::get('crearreporte','AdministracionController@corte');
 Auth::routes();
 //Route::get('impresion','AdministracionController@impresion');
 Route::get('impresionTicket','AdministracionController@impresionTicket');
+Route::get('ReimpresionTicket','AdministracionController@ReimpresionTicket');
 Route::get('impresionResponsiva','AdministracionController@impresionResponsiva');
 Route::get('/home', 'HomeController@index')->name('home');

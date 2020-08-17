@@ -187,7 +187,7 @@ export default {
                             metodo_pago: this.selected_metodo_pago,
                             total:this.total_a_pagar[0].tot,
                             nombreCliente: this.nombreCliente
-
+                            
                         })
                         .then((response)=> {
                             if(response.data.error){
@@ -203,7 +203,7 @@ export default {
                                 this.acciones.cant=0;
                                 this.nombreCliente="";
                                 this.respuesta='<div class="alert alert-success" role="alert">¡'+
-                                +'Exito!</div>';
+                                'Exito'!</div>';
                                 $('#respuesta').modal('show');
                                 this.createRow(this.productos,this.total_a_pagar,this.acciones);
                                 window.location.href='/impresionTicket?id='+response.data.idVenta;

@@ -17,3 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/holamundo', function()
+{
+    return 'Hola Mundo.';
+});
+Route::get('/indexproducto','AdministracionApi@indexproducto');
+Route::get('/registrarcompra','AdministracionApi@registrarcompra');//->hecho por osmar cualquier problema se borra
+Route::get('/crearreporte','AdministracionApi@corte');
+Route::get('/ventas','AdministracionApi@ventas');
+Route::get('/indexmembresia','AdministracionApi@indexmembresia');
+Route::get('/actualizarmembresia','AdministracionApi@actualizarmembresia');
+Route::get('/eliminartarjeta','AdministracionApi@eliminartarjeta');
+Route::get('/crearreporte','AdministracionApi@corte');

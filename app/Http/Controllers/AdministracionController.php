@@ -27,7 +27,7 @@ class AdministracionController extends Controller
     public function registrarcompra(){
         $idVenta=Venta::create([
             'idcliente'=>'0',
-            'fecha_venta'=>date('Y-m-d'),
+            'fecha_venta'=>date('Y-m-d H:i:s'),
             'idusuario'=>@auth()->user()->id,
             'metodo_pago'=>request('metodo_pago'),
             'total'=>request('total'),
@@ -528,6 +528,22 @@ class AdministracionController extends Controller
       foreach ($torneos as $venta)
           $totalIngresos+=$venta->monto;
       return view('Ticket',['producto'=>$torneos,'totalventa'=>$totalIngresos,'idVenta'=>request('id')]);
+    }
+    public function ReimpresionTicket()
+    {
+      $torneos=DB::table('detalle_venta as dv')
+      ->select('p.nombre as nombre','dv.cantidad','dv.monto')
+      ->join('producto as p','p.idproducto','=','dv.idproducto')
+      ->where('dv.idventa','=',request('id'))
+      ->get();
+      $fechaventa=DB::table('venta as v')
+      ->select('v.fecha_venta as fechaventa')
+      ->where('v.idventa','=',request('id'))
+      ->take(1)->first();
+      $totalIngresos=0;
+      foreach ($torneos as $venta)
+          $totalIngresos+=$venta->monto;
+      return view('ReimpresionTicket',['producto'=>$torneos,'totalventa'=>$totalIngresos,'idVenta'=>request('id'),'fechaventa'=>$fechaventa->fechaventa]);
     }
     public function impresionResponsiva()
     {

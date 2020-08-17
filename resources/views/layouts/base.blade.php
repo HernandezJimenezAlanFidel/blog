@@ -147,7 +147,7 @@
             </li>
 @if(Auth::user()->hasRole('admin')==1||Auth::user()->hasRole('gerente')==1)
             <!--Prueba de Recargas-->
-            <!--<li class="nav-item">
+            <li class="nav-item">
               <a href="/recargas" class="nav-link">
                 <i class="nav-icon fas fa-credit-card"></i>
                 <p>
@@ -156,7 +156,7 @@
                 </p>
               </a>
             </li>
-          </li>-->
+          </li>
 
             <!--fin de Recargas-->
 
@@ -211,7 +211,7 @@
             </a>
           </li>
 
-          <!--
+          
           <li class="nav-item">
             <a href="/indexmembresia" class="nav-link">
             <i class="nav-icon fas fa-address-card"></i>
@@ -221,7 +221,7 @@
               </p>
             </a>
           </li>
-        -->
+
           @if(Auth::user()->hasRole('admin')==1)
           <li class="nav-item">
             <a href="/indextrabajador" class="nav-link">
@@ -343,5 +343,6 @@
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="../../dist/js/pages/dashboard3.js"></script>
+
 </body>
 </html>
