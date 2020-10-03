@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use PDF;
 use DB;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+use App\User;
 use Mike42\Escpos\Printer;
 use Illuminate\Support\Str;
 use App\Models\Cliente;
@@ -252,15 +253,15 @@ class AdministracionApi extends Controller
 
     public function autenticar(Request $request)
     {
-      $id = DB::table('users')->select('id')->
-      where('email','=',request('email'))->
-      where('password','=',request('password'))
-      ->take(1)->first();
-      if($id!=null)
-      return response()->json(['status'=>'ok'], 200);
+      $user = User::where('email', '=', request('email'))->first();   //get db User data
+      if(Hash::check(request('password'), $user->password)) {
+        return response()->json(['status'=>'ok'], 200);
 
+
+      }
+      else {
         return response()->json(['status'=>'Unauthorized'], 401);
-
+      }
     }
 
 
