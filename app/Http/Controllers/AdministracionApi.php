@@ -250,6 +250,18 @@ class AdministracionApi extends Controller
     }
 
 
+    public function autenticar(Request $request)
+    {
+      $id = DB::table('users')->select('id')->
+      where('email','=',$request->get('email'))->
+      where('password','=',$request->get('password'))
+      ->take(1)->first();
+      if($id!=null)
+      return response()->json(['status'=>'ok'], 200);
+
+        return response()->json(['status'=>'Unauthorized'], 401);
+
+    }
 
 
 }

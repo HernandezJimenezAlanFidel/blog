@@ -29,3 +29,4 @@ Route::get('/indexmembresia','AdministracionApi@indexmembresia');
 Route::get('/actualizarmembresia','AdministracionApi@actualizarmembresia');
 Route::get('/eliminartarjeta','AdministracionApi@eliminartarjeta');
 Route::get('/crearreporte','AdministracionApi@corte');
+Route::get('/login','AdministracionApi@autenticar');
