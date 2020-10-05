@@ -30,3 +30,6 @@ Route::get('/actualizarmembresia','AdministracionApi@actualizarmembresia');
 Route::get('/eliminartarjeta','AdministracionApi@eliminartarjeta');
 Route::get('/crearreporte','AdministracionApi@corte');
 Route::get('/login','AdministracionApi@autenticar');
+Route::get('/verificartarjeta','AdministracionApi@verificartarjeta');
+Route::get('/abonartarjeta','AdministracionApi@abonartarjeta');
+Route::get('/cobrartarjeta','AdministracionApi@cobrartarjeta');
