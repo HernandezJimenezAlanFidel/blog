@@ -104,7 +104,7 @@ table {
 <body>
 <div class="col-md-12">
 <h3>Fecha corte: {{$fecha}} </h3>
-<h4>Usuario: {{auth()->user()->name}}</h4>
+<h4>Usuario: Elaborado Por App</h4>
 <h4>Fecha de elaboracion: <?php echo date("d") . " del " . date("m") . " de " . date("Y");?></h4>
 
         <div class="box">
@@ -114,8 +114,6 @@ table {
                           <tr>
                               <th>Idventa</th>
 															<th>Usuario</th>
-															<th>producto</th>
-															<th>cantidad</th>
                               <th>Monto</th>
 															<th>Metodo de pago</th>
                               <th>Fecha</th>
@@ -126,10 +124,8 @@ table {
                           <tr>
       												<td>{{$ventas->idventa}}</td>
       												<td>{{$ventas->idusuario}}</td>
-      												<td>{{$ventas->nombreproducto}}</td>
-      												<td>{{$ventas->cantidadventa}}</td>
-															<td>{{$ventas->montoventa}}</td>
-															@if($ventas->metodopago==1)
+      												<td>${{$ventas->total}}</td>
+															@if($ventas->metodo_pago==1)
       												<td>efectivo</td>
 															@else
 															<td>Tarjeta debito</td>
@@ -167,5 +163,7 @@ table {
               </div>
           </div>
       </div>
+
+
 		</body>
 		</html>

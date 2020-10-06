@@ -33,3 +33,4 @@ Route::get('/login','AdministracionApi@autenticar');
 Route::get('/verificartarjeta','AdministracionApi@verificartarjeta');
 Route::get('/abonartarjeta','AdministracionApi@abonartarjeta');
 Route::get('/cobrartarjeta','AdministracionApi@cobrartarjeta');
+Route::get('/creartarjeta','AdministracionApi@creartarjeta');

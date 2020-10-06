@@ -136,10 +136,10 @@ class AdministracionApi extends Controller
     {$totalIngresos=0;
       $totalefectivo=0;
       $totaltarjeta=0;
-      if($request->get('tipocorte')=="0")
-      { $fecha=$request->get('fecha');
+      if(request('tipocorte')=="0")
+      { $fecha=request('fecha');
 
-         if($request->get('categoria')=="0")
+         if(request('categoria')=="0")
           {
             $torneos=DB::table('venta as v')
             ->join('users as u','v.idusuario','=','u.id')
@@ -160,7 +160,7 @@ class AdministracionApi extends Controller
 
 
             $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta];
-            return PDF::loadView('corte', $data)->stream('corte.pdf');
+            return PDF::loadView('corteapp', $data)->stream('corte.pdf');
 
             //return view('corte',["venta"=>$torneos,"fecha"=>$fecha]);
           }
@@ -171,7 +171,7 @@ class AdministracionApi extends Controller
             ->join('producto as p','p.idproducto','=','dv.idproducto')
             ->select('v.idventa as idventa','u.name as idusuario','p.nombre as nombreproducto','dv.cantidad as cantidadventa'
                       ,'dv.monto as montoventa','v.fecha_venta as fecha_venta','v.fecha_venta','v.metodo_pago as metodopago')
-            ->where('p.categoria','=',$request->get('categoria'))
+            ->where('p.categoria','=',request('categoria'))
             ->where('fecha_venta','=',$fecha)
             ->get();
 
@@ -188,16 +188,16 @@ class AdministracionApi extends Controller
 
 
             $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta];
-            return PDF::loadView('cortecategoria', $data)->stream('corte.pdf');
+            return PDF::loadView('cortecategoriaapp', $data)->stream('corte.pdf');
             }
     }
     else {
 
-      $fecha=$request->get('reservation');
+      $fecha=request('reservation');
       $split = explode('-', $fecha);
       $fechainicio=date("Y-m-d", strtotime($split[0]));
       $fechafinal=date("Y-m-d", strtotime($split[1]));
-          if($request->get('categoria')=="0")
+          if(request('categoria')=="0")
             {
               $torneos=DB::table('venta as v')
               ->join('users as u','v.idusuario','=','u.id')
@@ -217,7 +217,7 @@ class AdministracionApi extends Controller
 
 
               $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta];
-              return PDF::loadView('corte', $data)->stream('corte.pdf');
+              return PDF::loadView('corteapp', $data)->stream('corte.pdf');
             }
          else
           {
@@ -227,7 +227,7 @@ class AdministracionApi extends Controller
             ->join('producto as p','p.idproducto','=','dv.idproducto')
             ->select('v.idventa as idventa','u.name as idusuario','p.nombre as nombreproducto','dv.cantidad as cantidadventa'
                       ,'dv.monto as montoventa','v.fecha_venta as fecha_venta','v.fecha_venta','v.metodo_pago as metodopago')
-            ->where('p.categoria','=',$request->get('categoria'))
+            ->where('p.categoria','=',request('categoria'))
             ->whereBetween('fecha_venta',[$fechainicio,$fechafinal])
             ->get();
 
@@ -244,7 +244,7 @@ class AdministracionApi extends Controller
 
 
             $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta];
-            return PDF::loadView('cortecategoria', $data)->stream('corte.pdf');
+            return PDF::loadView('cortecategoriaapp', $data)->stream('corte.pdf');
         }
     }
 
@@ -280,6 +280,7 @@ class AdministracionApi extends Controller
     public function abonartarjeta(Request $request)
     {
       $tarjeta = Tarjeta::where('idtarjeta', '=', request('idtarjeta'))->first();   //get db User data
+
       if($tarjeta!=null) {
         $tarjeta->fondo_disponible=$tarjeta->fondo_disponible+request('monto');
         $tarjeta->save();
@@ -312,6 +313,16 @@ class AdministracionApi extends Controller
       }
     }
 
-
+    public function creartarjeta (Request $request)
+    {
+      $tarjeta= new Tarjeta;
+      $tarjeta->idtarjeta=get('idtarjeta');
+      $tarjeta->tipo=get('tipo');
+      $tarjeta->fondo_disponible=0;
+      $tarjeta->extra=0;
+      $tarjeta->activo=1;
+      $tarjeta->save();
+      return response()->json(['status'=>'ok'], 200);
+    }
 }
 ?>
