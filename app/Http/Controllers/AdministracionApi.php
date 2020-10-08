@@ -268,7 +268,7 @@ class AdministracionApi extends Controller
       $tarjeta = Tarjeta::where('idtarjeta', '=', request('idtarjeta'))->first();   //get db User data
       if($tarjeta!=null) {
 
-        return response()->json(['status'=>'ok'], 200);
+        return response()->json(['status'=>'ok','data'=>$tarjeta], 200);
 
 
       }
@@ -284,7 +284,7 @@ class AdministracionApi extends Controller
       if($tarjeta!=null) {
         $tarjeta->fondo_disponible=$tarjeta->fondo_disponible+request('monto');
         $tarjeta->save();
-        return response()->json(['status'=>'ok'], 200);
+        return response()->json(['status'=>'ok','data'=>$tarjeta], 200);
 
 
       }
@@ -300,7 +300,7 @@ class AdministracionApi extends Controller
         {
           $tarjeta->fondo_disponible=$tarjeta->fondo_disponible-request('monto');
           $tarjeta->save();
-          return response()->json(['status'=>'ok'], 200);
+          return response()->json(['status'=>'ok','data'=>$tarjeta], 200);
 
         }
         else{
@@ -322,7 +322,7 @@ class AdministracionApi extends Controller
       $tarjeta->extra=0;
       $tarjeta->activo=1;
       $tarjeta->save();
-      return response()->json(['status'=>'ok'], 200);
+      return response()->json(['status'=>'ok','data'=>$tarjeta], 200);
     }
 }
 ?>
