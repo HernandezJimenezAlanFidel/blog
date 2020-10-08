@@ -316,8 +316,8 @@ class AdministracionApi extends Controller
     public function creartarjeta (Request $request)
     {
       $tarjeta= new Tarjeta;
-      $tarjeta->idtarjeta=get('idtarjeta');
-      $tarjeta->tipo=get('tipo');
+      $tarjeta->idtarjeta=request('idtarjeta');
+      $tarjeta->tipo=request('tipo');
       $tarjeta->fondo_disponible=0;
       $tarjeta->extra=0;
       $tarjeta->activo=1;
