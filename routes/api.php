@@ -22,7 +22,7 @@ Route::get('/holamundo', function()
     return 'Hola Mundo.';
 });
 Route::get('/indexproducto','AdministracionApi@indexproducto');
-Route::get('/registrarcompra','AdministracionApi@registrarcompra');//->hecho por osmar cualquier problema se borra
+Route::post('/registrarcompra','AdministracionApi@registrarcompra');//->hecho por osmar cualquier problema se borra
 Route::get('/crearreporte','AdministracionApi@corte');
 Route::get('/ventas','AdministracionApi@ventas');
 Route::get('/indexmembresia','AdministracionApi@indexmembresia');

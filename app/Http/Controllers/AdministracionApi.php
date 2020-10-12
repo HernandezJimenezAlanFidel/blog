@@ -63,7 +63,7 @@ class AdministracionApi extends Controller
         }
         $producto->fondo_disponible=$producto->fondo_disponible-request('total');
         $producto->save();
-        return response()->json(['status'=>'ok']);
+        return response()->json(['status'=>'ok'], 200);
     }
 
 
