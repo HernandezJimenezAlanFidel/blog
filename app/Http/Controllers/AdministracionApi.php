@@ -256,7 +256,7 @@ class AdministracionApi extends Controller
     {
       $user = User::where('email', '=', request('email'))->first();   //get db User data
       if(Hash::check(request('password'), $user->password)) {
-        return response()->json(['status'=>'ok'], 200);
+        return response()->json(['status'=>'ok','idusuario'=>$user->id], 200);
 
 
       }
