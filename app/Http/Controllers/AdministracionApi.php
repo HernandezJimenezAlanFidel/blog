@@ -63,7 +63,7 @@ class AdministracionApi extends Controller
 
         }
         $tarjeta->fondo_disponible=$tarjeta->fondo_disponible-request('total');
-        $producto->save();
+        $tarjeta->save();
         return response()->json(['status'=>'ok'], 200);
     }
 
