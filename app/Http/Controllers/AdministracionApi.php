@@ -33,8 +33,8 @@ class AdministracionApi extends Controller
 
 
         $idVenta=Venta::create([
-            'idcliente'=>request('idcliente'),
-            'fecha_venta'=>request('fecha'),
+            'idcliente'=>0,
+            'fecha_venta'=>date('Y-m-d H:i:s'),
             'idusuario'=>request('idusuario'),
             'metodo_pago'=>'3',
             'total'=>request('total'),
