@@ -26,9 +26,9 @@ class AdministracionApi extends Controller
 {
     use UploadTrait;
     public function registrarcompra(){
-      $producto=Tarjeta::where('idtarjeta',request('idtarjeta'))->take(1)->first();
+      $tarjeta=Tarjeta::where('idtarjeta',request('idtarjeta'))->take(1)->first();
       $total=request('total');
-      if($total>$producto->fondo_disponible)
+      if($total>=$tarjeta->fondo_disponible)
        return response()->json(['status'=>'fondo insuficiente']);
 
 
@@ -60,8 +60,9 @@ class AdministracionApi extends Controller
                             'mensaje'=>'Cantidad insuficiente en el stock de '.$key['nombre']]);
                 }
             }
+
         }
-        $producto->fondo_disponible=$producto->fondo_disponible-request('total');
+        $tarjeta->fondo_disponible=$tarjeta->fondo_disponible-request('total');
         $producto->save();
         return response()->json(['status'=>'ok'], 200);
     }

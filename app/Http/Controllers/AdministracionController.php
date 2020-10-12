@@ -34,7 +34,6 @@ class AdministracionController extends Controller
             'nombreComprador'=>request('nombreCliente'),
             'activo'=>1
         ])->idventa;
-
         if(isset($idVenta)){
             foreach(request('compra') as $key){
                 $producto=Producto::where('idproducto',$key['id'])->select('cantidad');
