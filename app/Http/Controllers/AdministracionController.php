@@ -262,10 +262,7 @@ class AdministracionController extends Controller
 //Membresia
     public function indexmembresia(Request $request)
     {
-        $torneos=DB::table('cliente as c')
-        ->join('tarjeta as t','t.idtarjeta','=','c.idtarjeta')
-        ->select('c.idcliente','c.nombre','c.telefono','t.idtarjeta','t.tipo as tipotarjeta','t.fondo_disponible as fondotarjeta')
-        ->where('c.activo','=','1')
+        $torneos=DB::table('tarjeta as t')
         ->where('t.activo','=','1');
         $torneos=$torneos->get();
         return view('membresia-inicio',["clientes"=>$torneos]);
@@ -280,7 +277,7 @@ class AdministracionController extends Controller
         $torneos=$torneos->get();
         return view('membresia-inicio',["clientes"=>$torneos]);
 
-    }
+    } 
 
     public function eliminartarjeta(Request $request,$id){
       $tarjeta=Tarjeta::where('idtarjeta',$id)->take(1)->first();

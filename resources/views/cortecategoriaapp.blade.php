@@ -132,7 +132,10 @@ table {
 															@if($ventas->metodopago==1)
       												<td>efectivo</td>
 															@else
-															<td>Tarjeta debito</td>
+																@if($ventas->metodopago==2)
+																<td>Tarjeta debito</td>
+																@else
+																<td>Tarjeta debito</td>
 															@endif
 															<td>{{$ventas->fecha_venta}}</td>
 											    </tr>
@@ -153,6 +156,14 @@ table {
                   <div class="col-md-12">
                       <label for="" name="totalIngresos">Total tarjeta : $
 													{{$totaltarjeta}}</label>
+                              <br><br>
+
+                  </div>
+              </div>
+							<div class="box-footer clearfix">
+                  <div class="col-md-12">
+                      <label for="" name="totalIngresos">Total pase : $
+													{{$totalpase}}</label>
                               <br><br>
 
                   </div>

@@ -16,11 +16,10 @@
           <table id="table_rutas" class="table table-bordered table-striped">
             <thead>
             <tr>
-              <th>idcliente</th>
-              <th>Nombre</th>
-              <th>Telefono</th>
+              <th>idtarjeta</th>
               <th>Tipo</th>
-              <th>Fondo</th>
+              <th>fondo_disponible</th>
+              <th>Estado</th>
               <th>Opciones</th>
 
             </tr>
@@ -28,13 +27,15 @@
               <tbody>
                 @foreach ($clientes as $tor)
                 <tr>
-                <td>{{ $tor->idcliente}}</td>
-                <td>{{ $tor->nombre}}</td>
-                <td>{{ $tor->telefono}}</td>
-                <td>{{ $tor->tipotarjeta}}</td>
-                <td>{{ $tor->fondotarjeta}}</td>
+                <td>{{ $tor->idtarjeta}}</td>
+                <td>{{ $tor->tipo}}</td>
+                <td>{{ $tor->fondo_disponible}}</td>
+                @if($tor->activo==1)
+                <td>Activo</td>
+                @else
+                <td>Desactivada</td>
                 <td>
-                  <a href="/editarcliente/{{$tor->idtarjeta}}"><i class="fa fa-edit"></i></a>
+                  <a href="/editartarjeta/{{$tor->idtarjeta}}"><i class="fa fa-edit"></i></a>
                   <a href=""data-target="#modal-delete-{{$tor->idtarjeta}}" data-toggle="modal"><i class="fas fa-trash"></i></a>
                 </td>
                 </tr>
@@ -51,10 +52,10 @@
     <!-- /.col -->
   </div>
 
-   <a href="/registromembresia" class="btn btn-app">
+   <!--<a href="/registromembresia" class="btn btn-app">
     <span class="badge bg-purple"><i class="fas fa-plus-circle"> Agregar</i></span>
     <i class="fas fa-credit-card"></i> Membresia
-   </a>
+  </a>-->
   <!-- /.row -->
   <!-- jQuery -->
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>

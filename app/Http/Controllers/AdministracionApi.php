@@ -170,7 +170,7 @@ class AdministracionApi extends Controller
 
                       $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta,
                     "totalpase"=>$totalpase];
-          return PDF::loadView('corte', $data)->stream('corteapp.pdf');
+          return PDF::loadView('corteapp', $data)->stream('corte'.$fecha.'.pdf');
 
           //return view('corte',["venta"=>$torneos,"fecha"=>$fecha]);
         }
@@ -205,7 +205,7 @@ class AdministracionApi extends Controller
 
                       $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta,
                     "totalpase"=>$totalpase];
-          return PDF::loadView('cortecategoria', $data)->stream('corteapp.pdf');
+          return PDF::loadView('cortecategoriaapp', $data)->stream('corteapp'.$fecha.'.pdf');
           }
   }
   else {
@@ -239,7 +239,7 @@ class AdministracionApi extends Controller
 
                         $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta,
                       "totalpase"=>$totalpase];
-            return PDF::loadView('corte', $data)->stream('corteapp.pdf');
+            return PDF::loadView('corteapp', $data)->stream('corte'.$fechainicio.'/'.$fechafinal.'.pdf');
           }
        else
         {
@@ -271,7 +271,7 @@ class AdministracionApi extends Controller
 
           $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta,
         "totalpase"=>$totalpase];
-          return PDF::loadView('cortecategoria', $data)->stream('corteapp.pdf');
+          return PDF::loadView('cortecategoriaapp', $data)->stream('corte'.$fechainicio.'/'.$fechafinal.'.pdf');
       }
   }
 
@@ -279,19 +279,28 @@ class AdministracionApi extends Controller
 
     public function autenticar(Request $request)
     {
-      $user = User::where('email', '=', request('email'))->first();   //get db User data
+      //$user = User::where('email', '=', request('email'))->first();
+      $user=DB::table('users as u')
+      ->join('role_user as ru','u.id','=','ru.user_id')
+      ->join('roles as r','ru.role_id','=','r.id')
+      ->select('u.id','u.password','r.id as role')
+      ->where('u.email','=',request('email'))->take(1)->first();//get db User data
       if(Hash::check(request('password'), $user->password)) {
+        if($user->role==2)
+        return response()->json(['status'=>'Unauthorized','mensaje'=>'Usuario sin privilegios'], 401);
+        else
         return response()->json(['status'=>'ok','idusuario'=>$user->id], 200);
 
 
       }
       else {
-        return response()->json(['status'=>'Unauthorized'], 401);
+        return response()->json(['status'=>'Unauthorized','mensaje'=>'Contraseña Incorrecta'], 401);
       }
     }
     public function verificartarjeta(Request $request)
     {
       $tarjeta = Tarjeta::where('idtarjeta', '=', request('idtarjeta'))->first();   //get db User data
+
       if($tarjeta!=null) {
 
         return response()->json(['status'=>'ok','data'=>$tarjeta], 200);
@@ -349,6 +358,12 @@ class AdministracionApi extends Controller
       $tarjeta->activo=1;
       $tarjeta->save();
       return response()->json(['status'=>'ok','data'=>$tarjeta], 200);
+    }
+    public function eliminartarjeta(Request $request){
+      $tarjeta=Tarjeta::where('idtarjeta',request('idtarjeta'))->take(1)->first();
+      $tarjeta->activo=0;
+      $tarjeta->save();
+      return response()->json(['status'=>'ok'], 200);
     }
 }
 ?>
