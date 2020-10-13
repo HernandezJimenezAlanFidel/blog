@@ -307,34 +307,44 @@ public function indexmembresia(Request $request)
       $tarjeta = Tarjeta::where('idtarjeta', '=', request('idtarjeta'))->first();   //get db User data
 
       if($tarjeta!=null) {
-        $tarjeta->fondo_disponible=$tarjeta->fondo_disponible+request('monto');
-        $tarjeta->save();
-        return response()->json(['status'=>'ok','data'=>$tarjeta], 200);
-
-
+            if($tarjeta->activo==1)
+              {
+                  $tarjeta->fondo_disponible=$tarjeta->fondo_disponible+request('monto');
+                    $tarjeta->save();
+                    return response()->json(['status'=>'ok','data'=>$tarjeta], 200);
+              }
+            else{
+              return response()->json(['status'=>'Tarjeta No Activa'], 401);
+            }
       }
       else {
-        return response()->json(['status'=>'Tarjeta no valida'], 401);
+        return response()->json(['status'=>'Tarjeta no existe'], 401);
       }
     }
     public function cobrartarjeta(Request $request)
     {
       $tarjeta = Tarjeta::where('idtarjeta', '=', request('idtarjeta'))->first();   //get db User data
       if($tarjeta!=null) {
-        if($tarjeta->fondo_disponible>=request('monto'))
-        {
-          $tarjeta->fondo_disponible=$tarjeta->fondo_disponible-request('monto');
-          $tarjeta->save();
-          return response()->json(['status'=>'ok','data'=>$tarjeta], 200);
+          if($tarjeta->activo==1)
+          {
+              if($tarjeta->fondo_disponible>=request('monto'))
+                {
+                    $tarjeta->fondo_disponible=$tarjeta->fondo_disponible-request('monto');
+                    $tarjeta->save();
+                    return response()->json(['status'=>'ok','data'=>$tarjeta], 200);
 
-        }
-        else{
-          return response()->json(['status'=>'Fondos Insuficientes'], 401);
-        }
+                  }
+                  else{
+                    return response()->json(['status'=>'Fondos Insuficientes'], 401);
+                  }
+          }
+          else {
+            return response()->json(['status'=>'Tarjeta No Activa'], 401);
+          }
 
       }
       else {
-        return response()->json(['status'=>'Tarjeta no valida'], 401);
+        return response()->json(['status'=>'Tarjeta No Existe'], 401);
       }
     }
 
