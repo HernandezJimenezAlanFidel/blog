@@ -101,14 +101,10 @@ class AdministracionApi extends Controller
 
 
 //Membresia
-    public function indexmembresia(Request $request)
-    {
-        $torneos=DB::table('cliente as c')
-        ->join('tarjeta as t','t.idtarjeta','=','c.idtarjeta')
-        ->select('c.idcliente','c.nombre','c.telefono','t.idtarjeta','t.tipo as tipotarjeta','t.fondo_disponible as fondotarjeta')
-        ->where('c.activo','=','1')
-        ->where('t.activo','=','1');
-        $torneos=$torneos->get();
+public function indexmembresia(Request $request)
+{
+    $torneos=DB::table('tarjeta as t');
+    $torneos=$torneos->get();
         return response()->json(['status'=>'ok','data'=>$torneos], 200);
 
     }
@@ -124,12 +120,6 @@ class AdministracionApi extends Controller
 
     }
 
-    public function eliminartarjeta(Request $request,$id){
-      $tarjeta=Tarjeta::where('idtarjeta',$id)->take(1)->first();
-      $tarjeta->activo=0;
-      $tarjeta->save();
-      return Redirect::to('/indexmembresia');
-    }
 
 
   //corte

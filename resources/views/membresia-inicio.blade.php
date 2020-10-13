@@ -34,6 +34,7 @@
                 <td>Activo</td>
                 @else
                 <td>Desactivada</td>
+                @endif
                 <td>
                   <a href="/editartarjeta/{{$tor->idtarjeta}}"><i class="fa fa-edit"></i></a>
                   <a href=""data-target="#modal-delete-{{$tor->idtarjeta}}" data-toggle="modal"><i class="fas fa-trash"></i></a>
