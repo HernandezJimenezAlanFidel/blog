@@ -128,7 +128,11 @@ table {
 															@if($ventas->metodo_pago==1)
       												<td>efectivo</td>
 															@else
-															<td>Tarjeta debito</td>
+																@if($ventas->metodo_pago==2)
+																<td>Tarjeta debito</td>
+																@else
+																<td>Tarjeta pase</td>
+																@endif
 															@endif
 															<td>{{$ventas->fecha_venta}}</td>
 											    </tr>
@@ -149,6 +153,14 @@ table {
                   <div class="col-md-12">
                       <label for="" name="totalIngresos">Total tarjeta : $
 													{{$totaltarjeta}}</label>
+                              <br><br>
+
+                  </div>
+              </div>
+							<div class="box-footer clearfix">
+                  <div class="col-md-12">
+                      <label for="" name="totalIngresos">Total Pase: $
+													{{$totalpase}}</label>
                               <br><br>
 
                   </div>

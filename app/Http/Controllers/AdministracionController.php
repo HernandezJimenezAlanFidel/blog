@@ -401,6 +401,7 @@ class AdministracionController extends Controller
     {$totalIngresos=0;
       $totalefectivo=0;
       $totaltarjeta=0;
+      $totalpase=0;
       if($request->get('tipocorte')=="0")
       { $fecha=$request->get('fecha');
 
@@ -409,7 +410,9 @@ class AdministracionController extends Controller
             $torneos=DB::table('venta as v')
             ->join('users as u','v.idusuario','=','u.id')
             ->select('v.idventa as idventa','u.name as idusuario','v.total','v.fecha_venta as fecha_venta','v.metodo_pago as metodo_pago')
-            ->where('fecha_venta','=',$fecha)
+            ->where('fecha_venta','>=',$fecha)
+            ->where('fecha_venta','<',$fecha.' 23:59:59')
+            ->where('v.activo','=','1')
             ->get();
 
             foreach ($torneos as $venta)
@@ -424,7 +427,13 @@ class AdministracionController extends Controller
                         $totaltarjeta+=$venta->total;
 
 
-            $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta];
+                        foreach ($torneos as $venta)
+                        if($venta->metodo_pago==3)
+                            $totalpase+=$venta->total;
+
+
+                        $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta,
+                      "totalpase"=>$totalpase];
             return PDF::loadView('corte', $data)->stream('corte.pdf');
 
             //return view('corte',["venta"=>$torneos,"fecha"=>$fecha]);
@@ -437,7 +446,9 @@ class AdministracionController extends Controller
             ->select('v.idventa as idventa','u.name as idusuario','p.nombre as nombreproducto','dv.cantidad as cantidadventa'
                       ,'dv.monto as montoventa','v.fecha_venta as fecha_venta','v.fecha_venta','v.metodo_pago as metodopago')
             ->where('p.categoria','=',$request->get('categoria'))
-            ->where('fecha_venta','=',$fecha)
+            ->where('fecha_venta','>=',$fecha)
+            ->where('fecha_venta','<',$fecha.' 23:59:59')
+            ->where('v.activo','=','1')
             ->get();
 
             foreach ($torneos as $venta)
@@ -451,8 +462,13 @@ class AdministracionController extends Controller
                     if($venta->metodopago==2)
                         $totaltarjeta+=$venta->montoventa;
 
+                        foreach ($torneos as $venta)
+                        if($venta->metodopago==3)
+                            $totalpase+=$venta->montoventa;
 
-            $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta];
+
+                        $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta,
+                      "totalpase"=>$totalpase];
             return PDF::loadView('cortecategoria', $data)->stream('corte.pdf');
             }
     }
@@ -467,7 +483,8 @@ class AdministracionController extends Controller
               $torneos=DB::table('venta as v')
               ->join('users as u','v.idusuario','=','u.id')
               ->select('v.idventa as idventa','u.name as idusuario','v.total','v.fecha_venta as fecha_venta','v.metodo_pago as metodo_pago')
-              ->whereBetween('fecha_venta',[$fechainicio,$fechafinal])
+              ->whereBetween('fecha_venta',[$fechainicio,$fechafinal.' 23:59:59'])
+              ->where('v.activo','=','1')
               ->get();
               foreach ($torneos as $venta)
                   $totalIngresos+=$venta->total;
@@ -480,8 +497,12 @@ class AdministracionController extends Controller
                       if($venta->metodo_pago==2)
                           $totaltarjeta+=$venta->total;
 
+                          foreach ($torneos as $venta)
+                          if($venta->metodo_pago==3)
+                              $totalpase+=$venta->total;
 
-              $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta];
+                          $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta,
+                        "totalpase"=>$totalpase];
               return PDF::loadView('corte', $data)->stream('corte.pdf');
             }
          else
@@ -493,7 +514,8 @@ class AdministracionController extends Controller
             ->select('v.idventa as idventa','u.name as idusuario','p.nombre as nombreproducto','dv.cantidad as cantidadventa'
                       ,'dv.monto as montoventa','v.fecha_venta as fecha_venta','v.fecha_venta','v.metodo_pago as metodopago')
             ->where('p.categoria','=',$request->get('categoria'))
-            ->whereBetween('fecha_venta',[$fechainicio,$fechafinal])
+            ->whereBetween('fecha_venta',[$fechainicio,$fechafinal.' 23:59:59'])
+            ->where('v.activo','=','1')
             ->get();
 
             foreach ($torneos as $venta)
@@ -507,13 +529,18 @@ class AdministracionController extends Controller
                     if($venta->metodopago==2)
                         $totaltarjeta+=$venta->montoventa;
 
+                        foreach ($torneos as $venta)
+                        if($venta->metodopago==3)
+                            $totalpase+=$venta->montoventa;
 
-            $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta];
+            $data=["venta"=>$torneos,"fecha"=>$fecha,"totalIngresos"=>$totalIngresos,"totalefectivo"=>$totalefectivo,"totaltarjeta"=>$totaltarjeta,
+          "totalpase"=>$totalpase];
             return PDF::loadView('cortecategoria', $data)->stream('corte.pdf');
         }
     }
 
     }
+
 
     public function impresionTicket()
     {
