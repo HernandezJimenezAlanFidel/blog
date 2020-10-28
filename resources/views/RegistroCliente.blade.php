@@ -27,6 +27,14 @@
               <label for="telefono_cliente">Telefono</label>
               <input required type="text" class="form-control" id="telefono_cliente" name="telefono_cliente" placeholder="ingresa el número Telefonico">
             </div>
+            <div class="form-group">
+             <label for="correo">Correo</label>
+             <input type="text" class="form-control" id="correo" name="correo" value="" placeholder="Ingresa el numero telefonico">
+           </div>
+            <div class="form-group">
+             <label for="id_tarjeta">Id Tarjeta</label>
+             <input type="text" class="form-control" id="id_tarjeta" name="id_tarjeta" value="" placeholder="Ingresa Id tarjeta asociado">
+           </div>
 
             <div class="form-group">
              <!--sexo-->
@@ -54,22 +62,6 @@
           </div>
           <!-- /.form group -->
 
-            <!-- Date range -->
-          <div hidden class="form-group">
-            <label for="fecha_registro">Fecha de registro</label>
-
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="far fa-calendar-alt"></i>
-                </span>
-              </div>
-              <input hidden type="date" class="form-control float-right" id="fecha_registro" name="fecha_registro"
-              value="<?php echo date("Y-m-d");?>">
-            </div>
-            <!-- /.input group -->
-          </div>
-          <!-- /.form group -->
 
           </div>
           <!-- /.card-body -->

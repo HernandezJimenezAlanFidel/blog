@@ -70,7 +70,6 @@ class AdministracionController extends Controller
     public function indexcliente(Request $request)
     {
         $torneos=DB::table('cliente as c')
-        ->select('c.idcliente','c.nombre','c.direccion','c.telefono','c.sexo')
         ->where('c.activo','=','1');
         $torneos=$torneos->get();
         return view('cliente-inicio',["clientes"=>$torneos]);
@@ -81,6 +80,7 @@ class AdministracionController extends Controller
 
           return view("RegistroCliente");
         }
+        //modificar clientes en base y agregar en Controller
     public function crearcliente (Request $request)
   {
       $cliente= new Cliente;
@@ -88,7 +88,8 @@ class AdministracionController extends Controller
       $cliente->direccion=$request->get('domicilio');
       $cliente->telefono=$request->get('telefono_cliente');
       $cliente->fecha_nac=$request->get('fecha_nacimiento');
-      $cliente->fecha_reg=$request->get('fecha_registro');
+      $cliente->correo=$request->get('correo');
+      $cliente->idtarjeta=$request->get('id_tarjeta');
       $cliente->sexo=$request->get('sexo_cliente');
       $cliente->activo=1;
       $cliente->save();
@@ -105,11 +106,12 @@ class AdministracionController extends Controller
     $cliente->direccion=$request->get('domicilio_cliente');
     $cliente->telefono=$request->get('telefono_cliente');
     $cliente->fecha_nac=$request->get('fecha_nacimiento');
-    $cliente->fecha_reg=$request->get('fecha_registro');
+    $cliente->correo=$request->get('correo');
+    $cliente->idtarjeta=$request->get('id_tarjeta');
     $cliente->sexo=$request->get('sexo_cliente');
     $cliente->activo=1;
     $cliente->save();
-    return Redirect::to('/inicio');
+    return Redirect::to('/indexcliente');
   }
   public function eliminarcliente(Request $request,$id){
     $cliente=Cliente::where('idcliente',$id)->take(1)->first();
@@ -268,14 +270,24 @@ class AdministracionController extends Controller
 
     }
 
-    public function actualizarmembresia(Request $request)
+    public function editmembresia($id)
     {
-        $torneos=DB::table('cliente as c')
-        ->where('c.activo','=','1');
+        $tarjeta=Tarjeta::where('idtarjeta',$id)->take(1)->first();
+        return view('ActualizarMembresia',["tarjeta"=>$tarjeta]);
 
-        $torneos=$torneos->get();
-        return view('membresia-inicio',["clientes"=>$torneos]);
+    }
+    public function actualizarmembresia(Request $request,$id)
+    {
+      $tarjeta=Tarjeta::where('idtarjeta',$id)->take(1)->first();
 
+      $tarjeta->fondo_disponible=$request->get('fondo_membresia');
+      if($request->get('activo'))
+      $tarjeta->activo=1;
+      else
+      $tarjeta->activo=0;
+
+      $tarjeta->save();
+      return Redirect::to('/indexmembresia');
     }
 
     public function eliminartarjeta(Request $request,$id){
@@ -289,7 +301,21 @@ class AdministracionController extends Controller
 
        return view("RegistroMembresia");
     }
+    public function registrarmembresia(Request $request)
+    {
+      $tarjeta= new Tarjeta;
 
+      $tarjeta->idtarjeta=$request->get('id_tarjeta');
+      $tarjeta->tipo="Premium";
+      $tarjeta->fondo_disponible=$request->get('fondo_membresia');
+      if($request->get('activo'))
+      $tarjeta->activo=1;
+      else
+      $tarjeta->activo=0;
+
+      $tarjeta->save();
+      return Redirect::to('/indexmembresia');
+    }
     public function indextrabajador(Request $request)
     {
         $torneos=DB::table('users as u')

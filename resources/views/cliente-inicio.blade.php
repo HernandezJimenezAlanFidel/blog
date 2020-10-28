@@ -21,6 +21,8 @@
               <th>Direccion</th>
               <th>Telefono</th>
               <th>Sexo</th>
+              <th>Correo</th>
+              <th>Membresia</th>
               <th>Opciones</th>
 
             </tr>
@@ -32,7 +34,10 @@
                   <td>{{ $tor->nombre}}</td>
           				<td>{{ $tor->direccion}}</td>
           				<td>{{ $tor->telefono}}</td>
-          				<td>{{ $tor->sexo}}</td>
+                  <td>{{ $tor->sexo}}</td>
+          				<td>{{ $tor->correo}}</td>
+                  <td>{{ $tor->idtarjeta}}</td>
+
           				<td>
           					<a href="/editarcliente/{{$tor->idcliente}}"><i class="fa fa-edit"></i></a>
                     <a href=""data-target="#modal-delete-{{$tor->idcliente}}" data-toggle="modal"><i class="fas fa-trash"></i></a>

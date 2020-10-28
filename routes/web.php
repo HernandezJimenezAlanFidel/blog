@@ -18,12 +18,13 @@ Route::get('inicio','InicioController@index');
 Route::get('indexcliente','AdministracionController@indexcliente');
 Route::post('crearcliente','AdministracionController@crearcliente');
 Route::get('registrocliente','AdministracionController@registrocliente');
-
-Route::post('registrarcompra','AdministracionController@registrarcompra');//->hecho por osmar cualquier problema se borra
-
 Route::get('editarcliente/{id}','AdministracionController@editcliente');
 Route::get('actualizarcliente/{id}','AdministracionController@actualizarcliente');
 Route::get('eliminarcliente/{id}','AdministracionController@eliminarcliente');
+
+Route::post('registrarcompra','AdministracionController@registrarcompra');//->hecho por osmar cualquier problema se borra
+
+
 
 Route::get('eliminartarjeta/{id}','AdministracionController@eliminartarjeta');
 Route::get('eliminarventa/{id}','AdministracionController@eliminarventa');
@@ -33,8 +34,14 @@ Route::get('cortecaja','InicioController@cortecaja');
 Route::get('recargas','InicioController@recargas');
 Route::get('base','InicioController@base');
 
-Route::get('indexmembresia','AdministracionController@indexmembresia');
+//membresia
 
+Route::get('indexmembresia','AdministracionController@indexmembresia');
+Route::get('registromembresia','AdministracionController@registromembresia');
+Route::post('creartarjeta','AdministracionController@registrarmembresia');
+Route::get('editarmembresia/{id}','AdministracionController@editmembresia');
+Route::get('actualizarmembresia/{id}','AdministracionController@actualizarmembresia');
+Route::put('eliminartarjeta/{id}','AdministracionController@eliminartarjeta');
 //trabajador
 Route::get('indextrabajador','AdministracionController@indextrabajador');
 Route::get('registrotrabajador','AdministracionController@registrotrabajador');
@@ -53,7 +60,6 @@ Route::get('eliminarproducto/{id}','AdministracionController@eliminarproducto');
 
 
 Route::get('registrotrabajador','AdministracionController@registrotrabajador');
-Route::get('registromembresia','AdministracionController@registromembresia');
 
 Route::get('crearreporte','AdministracionController@corte');
 //Route::get('impresion','AdministracionController@impresion');

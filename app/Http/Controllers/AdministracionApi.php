@@ -72,7 +72,7 @@ class AdministracionApi extends Controller
     public function indexproducto(Request $request)
     {
         $torneos=DB::table('producto as c')
-        ->select('c.idproducto','c.nombre','c.cantidad','c.precio','c.categoria')
+        ->select('c.idproducto','c.nombre','c.cantidad','c.precio','c.categoria','c.imagen')
         ->where('c.activo','=','1');
         $torneos=$torneos->get();
         return response()->json(['status'=>'ok','data'=>$torneos], 200);

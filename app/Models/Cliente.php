@@ -18,8 +18,9 @@ class Cliente extends Model
   'direccion',
   'sexo',
   'fecha_nac',
-  'fecha_reg',
+  'correo',
   'telefono',
-  'idtarjeta'
+  'idtarjeta',
+	'activo'
     ];
 }

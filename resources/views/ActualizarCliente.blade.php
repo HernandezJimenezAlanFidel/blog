@@ -27,6 +27,14 @@
               <label for="telefono_cliente">Telefono</label>
               <input type="text" class="form-control" id="telefono_cliente" name="telefono_cliente" value="{{$cliente->telefono}}" placeholder="Ingresa el numero telefonico">
             </div>
+            <div class="form-group">
+             <label for="correo">Correo</label>
+             <input type="text" class="form-control" id="correo" name="correo" value="{{$cliente->correo}}" placeholder="Ingresa el numero telefonico">
+           </div>
+            <div class="form-group">
+             <label for="id_tarjeta">Id Tarjeta</label>
+             <input type="text" class="form-control" id="id_tarjeta" name="id_tarjeta" value="{{$cliente->idtarjeta}}" placeholder="Ingresa Id tarjeta asociado">
+           </div>
 
 
             <div class="form-group">
@@ -59,21 +67,6 @@
           </div>
           <!-- /.form group -->
 
-            <!-- Date range -->
-          <div hidden class="form-group">
-            <label>Fecha de registro</label>
-
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="far fa-calendar-alt"></i>
-                </span>
-              </div>
-              <input type="date" value="{{$cliente->fecha_reg}}" class="form-control float-right" id="fecha_registro" name="fecha_registro">
-            </div>
-            <!-- /.input group -->
-          </div>
-          <!-- /.form group -->
 
           </div>
           <!-- /.card-body -->

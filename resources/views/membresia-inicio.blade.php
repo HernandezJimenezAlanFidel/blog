@@ -36,7 +36,7 @@
                 <td>Desactivada</td>
                 @endif
                 <td>
-                  <a href="/editartarjeta/{{$tor->idtarjeta}}"><i class="fa fa-edit"></i></a>
+                  <a href="/editarmembresia/{{$tor->idtarjeta}}"><i class="fa fa-edit"></i></a>
                   <a href=""data-target="#modal-delete-{{$tor->idtarjeta}}" data-toggle="modal"><i class="fas fa-trash"></i></a>
                 </td>
                 </tr>
@@ -53,10 +53,10 @@
     <!-- /.col -->
   </div>
 
-   <!--<a href="/registromembresia" class="btn btn-app">
+    <a href="/registromembresia" class="btn btn-app">
     <span class="badge bg-purple"><i class="fas fa-plus-circle"> Agregar</i></span>
     <i class="fas fa-credit-card"></i> Membresia
-  </a>-->
+  </a>
   <!-- /.row -->
   <!-- jQuery -->
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
