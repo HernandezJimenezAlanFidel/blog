@@ -347,7 +347,7 @@ public function indexmembresia(Request $request)
     public function creartarjeta (Request $request)
     {
       $tarjeta=Tarjeta::where('idtarjeta',request('idtarjeta'))->take(1)->first();
-      if($tarjeta!=null)
+      if($tarjeta==null)
       {
         $tarjeta= new Tarjeta;
         $tarjeta->idtarjeta=request('idtarjeta');
