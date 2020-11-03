@@ -27,9 +27,7 @@ class AdministracionApi extends Controller
     use UploadTrait;
     public function registrarcompra(){
       $tarjeta=Tarjeta::where('idtarjeta',request('idtarjeta'))->take(1)->first();
-      $total=request('total');
-      if($total>=$tarjeta->fondo_disponible)
-       return response()->json(['status'=>'fondo insuficiente']);
+      $total=request('total');      
 
 
         $idVenta=Venta::create([
@@ -329,8 +327,6 @@ public function indexmembresia(Request $request)
           {
               if($tarjeta->fondo_disponible>=request('monto'))
                 {
-                    $tarjeta->fondo_disponible=$tarjeta->fondo_disponible-request('monto');
-                    $tarjeta->save();
                     return response()->json(['status'=>'ok','data'=>$tarjeta], 200);
 
                   }
