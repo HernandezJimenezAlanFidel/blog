@@ -359,7 +359,7 @@ public function indexmembresia(Request $request)
         return response()->json(['status'=>'ok','data'=>$tarjeta], 200);
     }
     else{
-      return response()->json(['status'=>'Tarjeta ya existe','data'=>$tarjeta], 200);
+      return response()->json(['status'=>'Tarjeta ya existe','data'=>$tarjeta], 401);
     }
 
     }
