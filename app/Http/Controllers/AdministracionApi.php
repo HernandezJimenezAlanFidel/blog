@@ -27,7 +27,7 @@ class AdministracionApi extends Controller
     use UploadTrait;
     public function registrarcompra(){
       $tarjeta=Tarjeta::where('idtarjeta',request('idtarjeta'))->take(1)->first();
-      $total=request('total');      
+      $total=request('total');
 
 
         $idVenta=Venta::create([
@@ -346,14 +346,22 @@ public function indexmembresia(Request $request)
 
     public function creartarjeta (Request $request)
     {
-      $tarjeta= new Tarjeta;
-      $tarjeta->idtarjeta=request('idtarjeta');
-      $tarjeta->tipo=request('tipo');
-      $tarjeta->fondo_disponible=0;
-      $tarjeta->extra=0;
-      $tarjeta->activo=1;
-      $tarjeta->save();
-      return response()->json(['status'=>'ok','data'=>$tarjeta], 200);
+      $tarjeta=Tarjeta::where('idtarjeta',request('idtarjeta'))->take(1)->first();
+      if($tarjeta!=null)
+      {
+        $tarjeta= new Tarjeta;
+        $tarjeta->idtarjeta=request('idtarjeta');
+        $tarjeta->tipo=request('tipo');
+        $tarjeta->fondo_disponible=0;
+        $tarjeta->extra=0;
+        $tarjeta->activo=1;
+        $tarjeta->save();
+        return response()->json(['status'=>'ok','data'=>$tarjeta], 200);
+    }
+    else{
+      return response()->json(['status'=>'Tarjeta ya existe','data'=>$tarjeta], 200);
+    }
+
     }
     public function eliminartarjeta(Request $request){
       $tarjeta=Tarjeta::where('idtarjeta',request('idtarjeta'))->take(1)->first();
